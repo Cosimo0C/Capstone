@@ -1,0 +1,12 @@
+COSIMO CRUPI
+----------------------------------🚗 CAPSTONE PROJECT – Piattaforma per la compravendita di auto----------------------------------
+Il progetto sarà incentrato sulla creazione di un sito web basato su una mia idea personale, nata dalla mia passione per tutte le tipologie di auto e per il mondo della compravendita, sia di veicoli nuovi che usati, come avviene su piattaforme già esistenti come Subito, Autoscout24, Autohero, ecc.
+---------------------------------------------------------🎯 Obiettivo del progetto---------------------------------------------------------
+L’obiettivo è sviluppare una piattaforma in cui privati e rivenditori possano inserire annunci per vendere le proprie auto. Il sito sarà progettato per essere:
+- Accogliente dal punto di vista visivo, offrendo un’esperienza utente piacevole e moderna (a mio parere, ancora assente nel mercato attuale).
+- Funzionale e intuitivo, in modo che l’utente possa facilmente filtrare gli annunci in base alle proprie esigenze.
+- Dettagliato e completo, spingendo chi pubblica un annuncio a fornire quante più informazioni possibili sul veicolo, grazie a un sistema che incentiva (o “obbliga”) l’inserimento di dati specifici.
+Cercherò di integrare quante più funzionalità possibili per evitare che vengano pubblicati annunci incompleti o poco chiari.
+---------------------------------------------------------🛠️ Tecnologie utilizzate---------------------------------------------------------
+- Frontend: JavaScript con la libreria React e il framework Bootstrap per la progettazione dell’interfaccia utente (UI) e dell’esperienza utente (UX).
+- Backend e Database: Utilizzerò Java per la logica server-side e PostgreSQL per la gestione del database, dove verranno salvati gli annunci e i dati degli utenti.
