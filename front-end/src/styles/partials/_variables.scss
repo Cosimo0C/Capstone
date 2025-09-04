@@ -1,5 +1,6 @@
-@use "sass:color";
+@use "sass:map";
 
+// Colori mod
 $background: #0a1f44;
 $secondary: #1c1c1c;
 $text: #e7234d;
@@ -11,13 +12,25 @@ $mod-colors: (
   "primary": $background,
   "secondary": $secondary,
   "accent": $text,
-  "dark": color.adjust($secondary, $lightness: -50%),
-  "light": color.adjust($warning, $lightness: 100%),
+  "dark": $secondary,
+  "light": $warning,
   "danger": $alert,
   "warning": $warning,
   "success": $text,
   "info": $info,
-) !default;
-@use "bootstrap/scss/functions";
-@use "bootstrap/scss/variables" as *;
-$theme-colors: map-merge($theme-colors, $mod-colors);
+);
+
+// Base di colori Bootstrap (copia da bootstrap/scss/_variables.scss)
+$bootstrap-colors: (
+  "primary": #0d6efd,
+  "secondary": #6c757d,
+  "success": #198754,
+  "info": #0dcaf0,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": #212529,
+);
+
+// Unisci map
+$theme-colors: map.merge($bootstrap-colors, $mod-colors);

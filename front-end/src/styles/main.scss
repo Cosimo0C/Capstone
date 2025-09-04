@@ -1,11 +1,9 @@
-@use "sass:color";
-@use "./partials/variables" as *;
-
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/bootstrap";
+@use "./partials/variables" as vars;
+$theme-colors: vars.$theme-colors !default;
+@use "bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 body {
-  background-color: $background;
+  background-color: vars.$background;
+  font-family: "Bebas Neue";
 }
