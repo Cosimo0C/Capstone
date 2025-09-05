@@ -10,24 +10,24 @@ function ButtonDropdown() {
   };
   return (
     <div className="d-flex">
-      <button className="btn-drop" onClick={toggleDropdown}>
+      <button className="btn-drop border-0 fs-4" onClick={toggleDropdown}>
         Aiuto e informazioni {isOpen ? <FaAngleUp className="text-white" /> : <FaAngleDown className="text-white" />}
       </button>
       {isOpen && (
-        <div className="drp-menu">
+        <div className="bg-success p-3 fs-5 rounded-4 position-absolute z-3 text-light" style={{ minWidth: "12rem", top: "100px" }}>
           <ul>
             <li>
-              <Link to="/ComeFunziona" className="link-nav">
+              <Link to="/ComeFunziona" className="text-light text-decoration-none">
                 Come funziona
               </Link>
             </li>
             <li>
-              <Link to="/ChiSiamo" className="link-nav">
+              <Link to="/ComeFunziona" className="text-light text-decoration-none">
                 Chi siamo
               </Link>
             </li>
             <li>
-              <Link to="/Contattaci" className="link-nav">
+              <Link to="/ComeFunziona" className="text-light text-decoration-none">
                 Contattaci
               </Link>
             </li>

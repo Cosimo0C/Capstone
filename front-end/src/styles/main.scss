@@ -1,8 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import "./partials/variables";
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .bbb {
   background-color: $primary;
-  font-family: "Bebas Neue";
+  font-family: "Bebas Neue", sans-serif;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
 }

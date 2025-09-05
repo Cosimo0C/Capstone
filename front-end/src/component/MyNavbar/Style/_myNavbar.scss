@@ -1,0 +1,52 @@
+@import "../../../styles/partials/variables";
+
+.btn-nav {
+  color: $light;
+  background-color: transparent;
+  &:hover {
+    background-color: $info;
+    border-radius: 5px;
+    color: $success;
+    text-shadow: 0 0 10px $light;
+  }
+}
+.heart-btn {
+  width: 50px;
+  height: 50px;
+}
+
+.icon {
+  color: $success;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: opacity 0.2s ease;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+}
+
+.default {
+  opacity: 1;
+}
+
+.hover {
+  opacity: 0;
+}
+
+.heart-btn:hover .default {
+  opacity: 0;
+}
+
+.heart-btn:hover .hover {
+  opacity: 1;
+}
+.lgn-btn {
+  background-color: $success;
+  color: $primary;
+  border-color: $success;
+
+  &:hover {
+    color: $light;
+    border-color: $light;
+  }
+}

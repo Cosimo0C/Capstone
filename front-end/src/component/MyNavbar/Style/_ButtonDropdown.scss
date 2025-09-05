@@ -1,30 +1,11 @@
-@use "../../../styles/partials/variables" as vars;
+@import "../../../styles/partials/variables";
 .btn-drop {
-  border: none;
-  color: vars.$text;
   background-color: transparent;
-  font-weight: 400;
-  font-size: 25px;
-  width: 100%;
+  color: $light;
   &:hover {
-    background-color: vars.$info;
+    background-color: $info;
     border-radius: 5px;
-    color: white;
-    text-shadow: 0 0 10px vars.$text;
+    color: $success;
+    text-shadow: 0 0 10px $light;
   }
-}
-.drp-menu {
-  position: absolute;
-  top: 110px;
-  background-color: #ffffff;
-  color: vars.$text;
-  font-size: 20px;
-  padding: 15px;
-  border-radius: 4px;
-  z-index: 999;
-  min-width: 12rem;
-}
-.link-nav {
-  color: vars.$text;
-  text-decoration: none;
 }

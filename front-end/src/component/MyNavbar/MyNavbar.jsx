@@ -1,4 +1,4 @@
-import "./Style/myNavbar.scss";
+import "./Style/_myNavbar.scss";
 import { Container } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
@@ -8,22 +8,22 @@ function MyNavbar() {
   return (
     <Container fluid>
       <div className="d-flex p-2 justify-content-between align-items-center flex-wrap">
-        <div className="nav-left">
+        <div className="d-flex align-items-center gap-sm-4">
           <div>
             <img src={logo} alt="logo" className="rounded-circle" width={150} />
           </div>
-          <button className="btn-nav">Cerca l'auto</button>
-          <button className="btn-nav">Vendi la tua auto</button>
-          <button className="btn-nav">Garanzia</button>
+          <button className="btn-nav border-0 fs-4 fw-medium">Cerca l'auto</button>
+          <button className="btn-nav border-0 fs-4 fw-medium">Vendi la tua auto</button>
+          <button className="btn-nav border-0 fs-4 fw-medium">Garanzia</button>
           <ButtonDropdown />
         </div>
-        <div className="nav-right">
-          <button className="heart-btn">
+        <div className="d-flex align-items-center gap-sm-4">
+          <button className="heart-btn btn d-flex alig-items-center justify-content-center position-relative bg-transparent border-0">
             <FaHeart className="icon default" />
             <FaRegHeart className="icon hover" />
           </button>
 
-          <button className="lgn-btn btn btn-success">Login</button>
+          <button className="lgn-btn rounded-pill p-2 fw-medium fs-5">Login</button>
         </div>
       </div>
     </Container>

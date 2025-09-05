@@ -1,21 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import MyNavbar from "./component/MyNavbar/MyNavbar.jsx";
-import "./styles/main.scss";
 import ComeFunziona from "./component/ComeFunziona/ComeFunziona.jsx";
+import MyFooter from "./component/MyFooter/MyFooter.jsx";
+import Home from "./component/Home/Home.jsx";
+import "./styles/main.scss";
 
 function App() {
   return (
-    <>
-      <div className="bbb">
-        <BrowserRouter>
-          <MyNavbar />
+    <div className="bbb">
+      <BrowserRouter>
+        <MyNavbar />
+        <div className="page-content">
           <Routes>
             <Route path="/ComeFunziona" element={<ComeFunziona />} />
           </Routes>
-        </BrowserRouter>
-      </div>
-    </>
+          <Home />
+        </div>
+        <MyFooter />
+      </BrowserRouter>
+    </div>
   );
 }
 
