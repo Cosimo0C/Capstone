@@ -1,9 +1,8 @@
-@use "./partials/variables" as vars;
-$theme-colors: vars.$theme-colors !default;
-@use "bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import "./partials/variables";
 
-body {
-  background-color: vars.$background;
+.bbb {
+  background-color: $primary;
   font-family: "Bebas Neue";
+  min-height: 100vh;
 }

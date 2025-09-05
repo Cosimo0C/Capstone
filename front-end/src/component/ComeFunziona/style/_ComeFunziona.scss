@@ -1,1 +1,13 @@
 @use "../../../styles/partials/variables" as vars;
+.agata {
+  h1,
+  h2,
+  h3,
+  p {
+    color: #c1dbe3;
+  }
+}
+.logo {
+  border-radius: 50%;
+  width: 70%;
+}

@@ -5,6 +5,7 @@
   background-color: transparent;
   font-weight: 400;
   font-size: 25px;
+  width: 100%;
   &:hover {
     background-color: vars.$info;
     border-radius: 5px;
@@ -14,6 +15,7 @@
 }
 .drp-menu {
   position: absolute;
+  top: 110px;
   background-color: #ffffff;
   color: vars.$text;
   font-size: 20px;
@@ -21,4 +23,8 @@
   border-radius: 4px;
   z-index: 999;
   min-width: 12rem;
+}
+.link-nav {
+  color: vars.$text;
+  text-decoration: none;
 }

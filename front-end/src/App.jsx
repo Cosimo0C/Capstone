@@ -7,12 +7,14 @@ import ComeFunziona from "./component/ComeFunziona/ComeFunziona.jsx";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <MyNavbar />
-        <Routes>
-          <Route path="/ComeFunziona" element={<ComeFunziona />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="bbb">
+        <BrowserRouter>
+          <MyNavbar />
+          <Routes>
+            <Route path="/ComeFunziona" element={<ComeFunziona />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }
