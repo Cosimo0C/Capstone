@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import ButtonDropdown from "./ButtonDropdown";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/icona.png";
 function MyNavbar() {
   return (
     <Container fluid>

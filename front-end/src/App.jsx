@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="bbb">
       <BrowserRouter>
-        <MyNavbar />
         <div className="page-content">
           <Routes>
             <Route path="/ComeFunziona" element={<ComeFunziona />} />

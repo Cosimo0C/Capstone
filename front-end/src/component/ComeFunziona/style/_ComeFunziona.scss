@@ -8,6 +8,10 @@
   }
 }
 .logo {
-  border-radius: 50%;
-  width: 70%;
+  // border-radius: 50%;
+  max-width: 20%;
+}
+#fot {
+  background: #1c1c1c;
+  background: linear-gradient(360deg, rgba(28, 28, 28, 1) 0%, rgba(231, 35, 77, 1) 30%, rgba(10, 31, 68, 1) 80%);
 }

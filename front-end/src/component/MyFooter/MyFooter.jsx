@@ -3,12 +3,11 @@ import { FaSquareFacebook } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { Container } from "react-bootstrap";
 import { AiFillAndroid } from "react-icons/ai";
 import { FaApple } from "react-icons/fa";
 function MyFooter() {
   return (
-    <div className="text-success bg-secondary">
+    <div className="text-success pt-5" id="fot">
       <div className="d-flex justify-content-around">
         <div>
           <h1>CarsBuy</h1>
