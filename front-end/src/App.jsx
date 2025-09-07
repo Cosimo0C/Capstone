@@ -10,11 +10,12 @@ function App() {
   return (
     <div className="bbb">
       <BrowserRouter>
+        <MyNavbar />
         <div className="page-content">
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/ComeFunziona" element={<ComeFunziona />} />
           </Routes>
-          <Home />
         </div>
         <MyFooter />
       </BrowserRouter>

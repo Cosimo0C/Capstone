@@ -17,17 +17,17 @@ function ButtonDropdown() {
         <div className="bg-success p-3 fs-5 rounded-4 position-absolute z-3 text-light" style={{ minWidth: "12rem", top: "100px" }}>
           <ul>
             <li>
-              <Link to="/ComeFunziona" className="text-light text-decoration-none">
+              <Link to="/ComeFunziona" className="text-light text-decoration-none" onClick={() => setIsOpen(false)}>
                 Come funziona
               </Link>
             </li>
             <li>
-              <Link to="/ComeFunziona" className="text-light text-decoration-none">
+              <Link to="/ComeFunziona" className="text-light text-decoration-none" onClick={() => setIsOpen(false)}>
                 Chi siamo
               </Link>
             </li>
             <li>
-              <Link to="/ComeFunziona" className="text-light text-decoration-none">
+              <Link to="/ComeFunziona" className="text-light text-decoration-none" onClick={() => setIsOpen(false)}>
                 Contattaci
               </Link>
             </li>

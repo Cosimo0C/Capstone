@@ -4,13 +4,16 @@ import { FaHeart } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import ButtonDropdown from "./ButtonDropdown";
 import logo from "../../assets/icona.png";
+import { Link } from "react-router-dom";
 function MyNavbar() {
   return (
     <Container fluid>
       <div className="d-flex p-2 justify-content-between align-items-center flex-wrap">
         <div className="d-flex align-items-center gap-sm-4">
           <div>
-            <img src={logo} alt="logo" className="rounded-circle" width={150} />
+            <Link to={"/"}>
+              <img src={logo} alt="logo" className="rounded-circle" width={150} />
+            </Link>
           </div>
           <button className="btn-nav border-0 fs-4 fw-medium">Cerca l'auto</button>
           <button className="btn-nav border-0 fs-4 fw-medium">Vendi la tua auto</button>
