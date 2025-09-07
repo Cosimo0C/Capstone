@@ -5,6 +5,7 @@ import ComeFunziona from "./component/ComeFunziona/ComeFunziona.jsx";
 import MyFooter from "./component/MyFooter/MyFooter.jsx";
 import Home from "./component/Home/Home.jsx";
 import "./styles/main.scss";
+import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ComeFunziona" element={<ComeFunziona />} />
+            <Route path="/ChiSiamo" element={<ChiSiamo />} />
           </Routes>
         </div>
         <MyFooter />

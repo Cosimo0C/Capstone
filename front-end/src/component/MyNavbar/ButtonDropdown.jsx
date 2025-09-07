@@ -22,7 +22,7 @@ function ButtonDropdown() {
               </Link>
             </li>
             <li>
-              <Link to="/ComeFunziona" className="text-light text-decoration-none" onClick={() => setIsOpen(false)}>
+              <Link to="/ChiSiamo" className="text-light text-decoration-none" onClick={() => setIsOpen(false)}>
                 Chi siamo
               </Link>
             </li>
