@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import "./Style/_buttonDropdown.scss";
+import "./Style/_ButtonDropdown.scss";
 import { Link } from "react-router-dom";
 
 function ButtonDropdown() {

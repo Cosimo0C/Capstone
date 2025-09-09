@@ -1,4 +1,4 @@
-import "./Style/_myNavbar.scss";
+import "./Style/_MyNavbar.scss";
 import { Container } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
