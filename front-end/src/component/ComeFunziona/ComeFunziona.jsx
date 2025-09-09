@@ -1,4 +1,4 @@
-import "./style/_ComeFunziona.scss";
+import "./Style/_ComeFunziona.scss";
 import logo from "../../assets/icona.png";
 function ComeFunziona() {
   return (
