@@ -26,11 +26,13 @@ public class Utente {
     String password;
     String numCellulare;
     LocalDate dataNascita;
+
+    //stringhifizzo l'enun
+    @Enumerated(EnumType.STRING)
     Tipo tipo;
 
-    @OneToMany
-    @JoinColumn(name = "annuncio_id")
-    private List<Annuncio> annunciUtente= new ArrayList<>();
+
+    //annunci nei preferiti
     @ManyToMany
     @JoinTable(
             name = "preferiti",

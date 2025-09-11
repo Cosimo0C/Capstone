@@ -24,13 +24,20 @@ public class Annuncio {
     private String Descrizione;
     private int prezzo;
     private LocalDate dataPubblicazione;
-
+    //immagine
     @OneToMany
     @JoinColumn(name = "immagine_id")
     private List<Immagine> fotoAuto = new ArrayList<>();
+
+    //auto
     @OneToOne
     @JoinColumn(name = "auto_id")
     private Auto auto;
+
+    //venditore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "utente_id", nullable = false)
+    private Utente utente;
 
     @Override
     public String toString() {
