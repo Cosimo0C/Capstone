@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -62,6 +64,10 @@ public class Utente {
                 ", dataNascita=" + dataNascita +
                 ", tipo=" + tipo +
                 '}';
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return List.of(new SimpleGrantedAuthority(this.tipo.name()));
     }
 }
 
