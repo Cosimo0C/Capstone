@@ -43,6 +43,37 @@ public class AnnuncioService {
                 annuncio.getFotoAuto().add(immagine);
             }
         }
-        return annuncioRepository.save(annuncio);
+        log.info("L'annuncio è stato salvato correttamente!");
+        return this.annuncioRepository.save(annuncio);
+    }
+    public Annuncio findAnnuncioByIdAndUpdate(UUID annuncioId, AnnuncioDTO payload){
+        Annuncio fnd = findAnnuncioById(annuncioId);
+
+        fnd.setTitolo(payload.titolo());
+        fnd.setDescrizione(payload.descrizione());
+        fnd.setPrezzo(payload.prezzo());
+
+
+        Auto fndAuto = fnd.getAuto();
+        fndAuto.setMarca(payload.auto().marca());
+        fndAuto.setModello(payload.auto().modello());
+        fndAuto.setAnno(payload.auto().anno());
+        fndAuto.setPotenza(payload.auto().potenza());
+        fndAuto.setCambio(payload.auto().cambio());
+        fndAuto.setCarburante(payload.auto().carburante());
+        fndAuto.setChilometri(payload.auto().chilometri());
+
+        if (payload.imgAuto() != null){
+            fnd.getFotoAuto().clear();
+            for (String url : payload.imgAuto()){
+                fnd.getFotoAuto().add(new Immagine(url));
+            }
+        }
+        log.info("L'annuncio è stato aggiornato correttamente!");
+        return this.annuncioRepository.save(fnd);
+    }
+    public void findAnnuncioByIdAndDelete(UUID annuncioId){
+        Annuncio fnd = findAnnuncioById(annuncioId);
+        this.annuncioRepository.delete(fnd);
     }
 }
