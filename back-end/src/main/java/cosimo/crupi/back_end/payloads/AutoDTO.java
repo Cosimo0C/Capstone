@@ -17,6 +17,8 @@ public record AutoDTO(
         @NotEmpty(message = "Il tipo di cambio è obbligatorio per maggior informazioni per il possibile acquirente")
         String cambio,
         @NotEmpty(message = "Il tipo di carburante è obbligatorio per maggior informazioni per il possibile acquirente")
-        String carburante
+        String carburante,
+        @NotEmpty(message = "I chilometri sono fondamentali per capire l'usura dell'auto!")
+        int chilometri
 ) {
 }

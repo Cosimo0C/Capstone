@@ -20,4 +20,16 @@ public class Immagine {
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String url;
+
+    public Immagine(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Immagine{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

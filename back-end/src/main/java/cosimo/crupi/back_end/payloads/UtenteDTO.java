@@ -1,5 +1,6 @@
 package cosimo.crupi.back_end.payloads;
 
+import cosimo.crupi.back_end.enums.Tipo;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,8 @@ public record UtenteDTO(
         String numCellulare,
         @NotNull(message = "La data di nascita è obbligatoria")
         @Past(message = "La data deve essere nel passato")
-        LocalDate dataNascita
+        LocalDate dataNascita,
+        @NotNull(message = "Il tipo deve essere definito per rendere consapevole l'utente")
+        Tipo tipo
 ) {
 }

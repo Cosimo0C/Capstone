@@ -21,11 +21,22 @@ public class Annuncio {
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String titolo;
-    private String Descrizione;
+    private String descrizione;
     private int prezzo;
     private LocalDate dataPubblicazione;
+
+    public Annuncio(String titolo, String descrizione, int prezzo, LocalDate dataPubblicazione, Auto auto, Utente utente) {
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.prezzo = prezzo;
+        this.dataPubblicazione=dataPubblicazione;
+        this.fotoAuto = fotoAuto;
+        this.auto = auto;
+        this.utente = utente;
+    }
+
     //immagine
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "immagine_id")
     private List<Immagine> fotoAuto = new ArrayList<>();
 
@@ -44,7 +55,7 @@ public class Annuncio {
         return "Annuncio{" +
                 "id=" + id +
                 ", titolo='" + titolo + '\'' +
-                ", Descrizione='" + Descrizione + '\'' +
+                ", Descrizione='" + descrizione + '\'' +
                 ", prezzo=" + prezzo +
                 ", dataPubblicazione=" + dataPubblicazione +
                 '}';

@@ -3,6 +3,8 @@ package cosimo.crupi.back_end.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,17 @@ public class Auto {
     private int potenza;
     private String cambio;
     private String carburante;
+    private int chilometri;
+
+    public Auto (String marca, String modello, LocalDate anno, int potenza, String cambio, String carburante, int chilometri) {
+        this.marca = marca;
+        this.modello = modello;
+        this.anno = anno;
+        this.potenza = potenza;
+        this.cambio = cambio;
+        this.carburante = carburante;
+        this.chilometri = chilometri;
+    }
 
     @Override
     public String toString() {
@@ -37,6 +50,7 @@ public class Auto {
                 ", potenza=" + potenza +
                 ", cambio='" + cambio + '\'' +
                 ", carburante='" + carburante + '\'' +
+                ", chilometri=" + chilometri +
                 '}';
     }
 }
