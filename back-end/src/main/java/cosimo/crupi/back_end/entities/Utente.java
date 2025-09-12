@@ -30,6 +30,7 @@ public class Utente {
     //stringhifizzo l'enun
     @Enumerated(EnumType.STRING)
     Tipo tipo;
+
     public Utente(String nome, String cognome, String email, String password, String numCellulare, LocalDate dataNascita, Tipo tipo){
         this.nome=nome;
         this.cognome=cognome;

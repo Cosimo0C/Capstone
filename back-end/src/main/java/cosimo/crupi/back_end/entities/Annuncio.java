@@ -36,7 +36,7 @@ public class Annuncio {
     }
 
     //immagine
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     @JoinColumn(name = "immagine_id")
     private List<Immagine> fotoAuto = new ArrayList<>();
 
