@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -18,7 +19,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 
-public class Utente {
+public class Utente implements UserDetails {
     @Id
     @Setter(AccessLevel.NONE)
     private UUID id;
@@ -68,6 +69,11 @@ public class Utente {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return List.of(new SimpleGrantedAuthority(this.tipo.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
     }
 }
 
