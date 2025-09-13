@@ -29,6 +29,7 @@ public class Utente implements UserDetails {
     String password;
     String numCellulare;
     LocalDate dataNascita;
+    String avatarUrl;
 
     //stringhifizzo l'enun
     @Enumerated(EnumType.STRING)
