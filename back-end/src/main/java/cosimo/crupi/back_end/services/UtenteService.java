@@ -9,6 +9,7 @@ import cosimo.crupi.back_end.payloads.UtenteDTO;
 import cosimo.crupi.back_end.repositories.UtenteRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,16 +24,22 @@ public class UtenteService {
     private UtenteRepository utenteRepository;
 
     @Autowired
-    Cloudinary imageUp;
+    private Cloudinary imageUp;
+
+    @Autowired
+    private PasswordEncoder bcrypt;
 
     public Utente findUtenteById(UUID utenteId){
         return this.utenteRepository.findById(utenteId).orElseThrow(()-> new NotFoundException(utenteId));
+    }
+    public Utente findUtenteByEmail(String utenteEmail){
+        return this.utenteRepository.findByEmail(utenteEmail).orElseThrow(()-> new NotFoundException("L'utente con questa email: " + utenteEmail + " non esiste!"));
     }
     public Utente saveUtente(UtenteDTO payload){
         this.utenteRepository.findByEmail(payload.email()).ifPresent(utente -> {
             throw new BadRequestException("L'email " + utente.getEmail() + " è già in uso!");
         });
-        Utente newU = new Utente(payload.nome(), payload.cognome(), payload.email(), payload.password(), payload.numCellulare(), payload.dataNascita(), payload.tipo());
+        Utente newU = new Utente(payload.nome(), payload.cognome(), payload.email(), bcrypt.encode(payload.password()), payload.numCellulare(), payload.dataNascita(), payload.tipo());
         newU.setAvatarUrl("https://ui-avatars.com/api/?name=" + payload.nome() + "+" + payload.cognome());
         Utente saveU = this.utenteRepository.save(newU);
         log.info("L'utente è stato inserito correttamente!");
