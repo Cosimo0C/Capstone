@@ -4,13 +4,11 @@ import cosimo.crupi.back_end.entities.Annuncio;
 import cosimo.crupi.back_end.entities.Utente;
 import cosimo.crupi.back_end.exceptions.UnAuthorizedException;
 import cosimo.crupi.back_end.exceptions.ValidationException;
-import cosimo.crupi.back_end.payloads.AnnuncioDTO;
-import cosimo.crupi.back_end.payloads.UtenteDTO;
+import cosimo.crupi.back_end.payloads.*;
 import cosimo.crupi.back_end.services.AnnuncioService;
 import cosimo.crupi.back_end.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,37 +33,44 @@ public class UtenteController {
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    public Utente createUtente(@RequestBody @Validated UtenteDTO body, BindingResult validationResult) {
+    public UtenteRespDTO createUtente(@RequestBody @Validated UtenteDTO payload,
+                                      BindingResult validationResult) {
         if (validationResult.hasErrors()) {
             throw new ValidationException(validationResult.getFieldErrors()
                     .stream().map(fieldError -> fieldError.getDefaultMessage()).toList());
         } else {
-            return this.utenteService.saveUtente(body);
+            Utente newU = this.utenteService.saveUtente(payload);
+            return new UtenteRespDTO(newU.getId());
 
         }
     }
 
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Page<Utente> getPageUtente(@RequestParam(defaultValue = "0") int pageNumber,
+    public Page<UtenteRespDTO> getPageUtente(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "10")int pageSize){
-        return this.utenteService.findAll(pageNumber, pageSize);
+        return this.utenteService.findAll(pageNumber, pageSize).map(utente ->
+                new UtenteRespDTO(utente.getId()));
     }
 
     @GetMapping("/{utenteId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Utente getUtenteById(UUID utenteId){
-        return this.utenteService.findUtenteById(utenteId);
+    public UtenteRespDTO getUtenteById(@PathVariable UUID utenteId){
+        Utente u =this.utenteService.findUtenteById(utenteId);
+        return new UtenteRespDTO(u.getId());
     }
 
     @PutMapping("/{utenteId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Utente getUtenteByIdAndUpdate(@PathVariable UUID utenteId, @RequestBody @Validated UtenteDTO payload, BindingResult bindingResult){
+    public UtenteRespDTO getUtenteByIdAndUpdate(@PathVariable UUID utenteId,
+                                                @RequestBody @Validated UtenteDTO payload,
+                                                BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             throw new ValidationException(bindingResult.getFieldErrors()
                     .stream().map(fieldError -> fieldError.getDefaultMessage()).toList());
         }else {
-            return this.utenteService.findUtenteByIdAndUpdate(utenteId, payload);
+            Utente u =this.utenteService.findUtenteByIdAndUpdate(utenteId, payload);
+            return new UtenteRespDTO(u.getId());
         }
     }
 
@@ -90,17 +95,20 @@ public class UtenteController {
 
     //me
     @GetMapping("/me")
-    public Utente trovaIlMioProfilo(@AuthenticationPrincipal Utente currentAuth){
-        return this.utenteService.findUtenteById(currentAuth.getId());
+    public UtenteRespDTO trovaIlMioProfilo(@AuthenticationPrincipal Utente currentAuth){
+        return new UtenteRespDTO(currentAuth.getId());
     }
 
     @PutMapping("/me")
-    public Utente modificaMioProfilo(@AuthenticationPrincipal Utente currentAuth, UtenteDTO payload, BindingResult bindingResult){
+    public UtenteRespDTO modificaMioProfilo(@AuthenticationPrincipal Utente currentAuth,
+                                            @RequestBody @Validated UtenteDTO payload,
+                                            BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             throw new ValidationException(bindingResult.getFieldErrors()
                     .stream().map(fieldError -> fieldError.getDefaultMessage()).toList());
         }else {
-            return this.utenteService.findUtenteByIdAndUpdate(currentAuth.getId(), payload);
+            Utente u = this.utenteService.findUtenteByIdAndUpdate(currentAuth.getId(), payload);
+            return new UtenteRespDTO(u.getId());
         }
     }
 
@@ -117,27 +125,32 @@ public class UtenteController {
 
     //annunci
     @GetMapping("/annunci")
-    public  Page<Annuncio> getAnnunci(@RequestParam(defaultValue = "0")int pageNumber,
-                                      @RequestParam(defaultValue = "20")int pageSize){
-        return this.annuncioService.findAllAnnunci(pageNumber, pageSize);
+    public  Page<AnnuncioDTO> getAnnunci(@RequestParam(defaultValue = "0")int pageNumber,
+                                             @RequestParam(defaultValue = "20")int pageSize){
+        return this.annuncioService.findAllAnnunci(pageNumber, pageSize).map(this::mapADTO);
     }
 
     @GetMapping("/me/annunci")
-    public Page<Annuncio> getAnnunciMiei(@AuthenticationPrincipal Utente currentAuth,
+    public Page<AnnuncioDTO> getAnnunciMiei(@AuthenticationPrincipal Utente currentAuth,
                                          @RequestParam(defaultValue = "0") int pageNumber,
                                          @RequestParam(defaultValue = "20") int pageSize){
-        return this.annuncioService.findAnnunciByUtente(currentAuth.getId(), pageNumber, pageSize);
+        return this.annuncioService.findAnnunciByUtente(currentAuth.getId(), pageNumber, pageSize).map(this::mapADTO);
     }
 
     @PostMapping("/me/creoAnnuncio")
     @ResponseStatus(HttpStatus.CREATED)
-    public Annuncio createAnnucnio(@RequestBody  @Validated AnnuncioDTO payload, @RequestParam Utente utente){
-        return this.annuncioService.saveAnnuncio(payload, utente.getId());
+    public AnnuncioDTO createAnnucnio(@RequestBody  @Validated AnnuncioDTO payload,
+                                      @AuthenticationPrincipal Utente currentAuth){
+        Annuncio a = this.annuncioService.saveAnnuncio(payload, currentAuth.getId());
+        return mapADTO(a);
     }
 
     @PutMapping("/me/modAnnuncio/{annuncioId}")
     @ResponseStatus(HttpStatus.OK)
-    public Annuncio updateAnnuncio(@PathVariable UUID annuncioId, @RequestBody @Validated AnnuncioDTO payload, BindingResult bindingResult, @AuthenticationPrincipal Utente currentAuth){
+    public AnnuncioDTO updateAnnuncio(@PathVariable UUID annuncioId,
+                                   @RequestBody @Validated AnnuncioDTO payload,
+                                   BindingResult bindingResult,
+                                   @AuthenticationPrincipal Utente currentAuth){
         Annuncio fnd = this.annuncioService.findAnnuncioById(annuncioId);
         if (!fnd.getUtente().getId().equals(currentAuth.getId())){
             throw new UnAuthorizedException("Non puoi modificare questo annuncio che non è tuo!");
@@ -146,7 +159,8 @@ public class UtenteController {
             throw new ValidationException(bindingResult.getFieldErrors()
                     .stream().map(fieldError -> fieldError.getDefaultMessage()).toList());
         }else {
-            return this.annuncioService.findAnnuncioByIdAndUpdate(annuncioId, payload);
+            Annuncio modA = this.annuncioService.findAnnuncioByIdAndUpdate(annuncioId, payload);
+            return mapADTO(modA);
         }
     }
 
@@ -159,5 +173,24 @@ public class UtenteController {
         }else {
             this.annuncioService.findAnnuncioByIdAndDelete(annuncioId);
         }
+    }
+
+    // MAPPER da Annuncio Entity to DTO
+    private AnnuncioDTO mapADTO(Annuncio annuncio){
+        return new AnnuncioDTO(
+                annuncio.getTitolo(),
+                annuncio.getDescrizione(),
+                annuncio.getPrezzo(),
+                new AutoDTO(
+                        annuncio.getAuto().getMarca(),
+                        annuncio.getAuto().getModello(),
+                        annuncio.getAuto().getAnno(),
+                        annuncio.getAuto().getPotenza(),
+                        annuncio.getAuto().getCambio(),
+                        annuncio.getAuto().getCarburante(),
+                        annuncio.getAuto().getChilometri()
+                ),
+                annuncio.getFotoAuto().stream().map(immagine -> immagine.getUrl()).toList()
+        );
     }
 }
