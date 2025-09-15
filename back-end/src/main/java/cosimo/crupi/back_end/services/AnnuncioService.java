@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -75,5 +76,8 @@ public class AnnuncioService {
     public void findAnnuncioByIdAndDelete(UUID annuncioId){
         Annuncio fnd = findAnnuncioById(annuncioId);
         this.annuncioRepository.delete(fnd);
+    }
+    public Page<Annuncio> findAnnunciByUtente(UUID utenteId, int pageNumber, int pageSize){
+        return this.annuncioRepository.findByUtenteId(utenteId, PageRequest.of(pageNumber, pageSize));
     }
 }
