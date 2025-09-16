@@ -19,7 +19,7 @@ public class SecConfig {
         httpSecurity.formLogin(formLogin ->formLogin.disable());
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll());
+        httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
         return httpSecurity.build();
     }
     @Bean

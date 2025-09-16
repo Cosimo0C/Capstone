@@ -66,7 +66,7 @@ public class UtenteService {
             fnd.setNome(payload.nome());
             fnd.setCognome(payload.cognome());
             fnd.setEmail(payload.email());
-            fnd.setPassword(payload.password());
+            fnd.setPassword(bcrypt.encode(payload.password()));
             fnd.setNumCellulare(payload.numCellulare());
             fnd.setDataNascita(payload.dataNascita());
             fnd.setTipo(payload.tipo());

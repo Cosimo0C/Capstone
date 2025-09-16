@@ -25,7 +25,7 @@ public class AuthenticationService {
             String accessToken = jwtTools.createTokenUtente(fnd);
             return accessToken;
         }else {
-            throw new UnAuthorizedException("Password errata!");
+            throw new UnAuthorizedException("Credenziali errata!");
         }
     }
 }

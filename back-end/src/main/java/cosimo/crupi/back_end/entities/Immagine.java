@@ -1,8 +1,6 @@
 package cosimo.crupi.back_end.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +15,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Immagine {
     @Id
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String url;

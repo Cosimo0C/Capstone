@@ -18,6 +18,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Annuncio {
     @Id
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String titolo;

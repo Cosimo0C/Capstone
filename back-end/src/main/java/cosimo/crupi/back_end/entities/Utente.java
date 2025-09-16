@@ -21,8 +21,15 @@ import java.util.*;
 
 public class Utente implements UserDetails {
     @Id
+    @GeneratedValue(generator = "UUID")
+    @org.hibernate.annotations.GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     @Setter(AccessLevel.NONE)
     private UUID id;
+
     String nome;
     String cognome;
     String email;

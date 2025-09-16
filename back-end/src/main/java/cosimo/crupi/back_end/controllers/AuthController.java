@@ -5,6 +5,7 @@ import cosimo.crupi.back_end.exceptions.ValidationException;
 import cosimo.crupi.back_end.payloads.LoginDTO;
 import cosimo.crupi.back_end.payloads.LoginRespDTO;
 import cosimo.crupi.back_end.payloads.UtenteDTO;
+import cosimo.crupi.back_end.payloads.UtenteRespDTO;
 import cosimo.crupi.back_end.services.AuthenticationService;
 import cosimo.crupi.back_end.services.UtenteService;
 import jakarta.validation.Valid;
@@ -24,8 +25,10 @@ public class AuthController {
 
     //registrazione
     @PostMapping("/registrazione")
-    public Utente registrazione(@RequestBody @Valid UtenteDTO payload){
-        return utenteService.saveUtente(payload);
+    @ResponseStatus(HttpStatus.CREATED)
+    public UtenteRespDTO registrazione(@RequestBody @Valid UtenteDTO payload){
+        Utente newU = this.utenteService.saveUtente(payload);
+        return new UtenteRespDTO(newU.getId());
     }
 
     //login
@@ -38,12 +41,13 @@ public class AuthController {
     //admin
     @PostMapping("/registerAdmin")
     @ResponseStatus(HttpStatus.CREATED)
-    public Utente createUtente(@RequestBody @Validated UtenteDTO body, BindingResult validationResult){
+    public UtenteRespDTO createUtente(@RequestBody @Validated UtenteDTO body, BindingResult validationResult){
         if (validationResult.hasErrors()){
             throw new ValidationException(validationResult.getFieldErrors()
                     .stream().map(fieldError -> fieldError.getDefaultMessage()).toList());
         }else {
-            return this.utenteService.saveUtente(body);
+            Utente u = this.utenteService.saveUtente(body);
+            return new UtenteRespDTO(u.getId());
         }
     }
 }
