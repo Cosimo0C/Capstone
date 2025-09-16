@@ -30,7 +30,7 @@ public class UtenteController {
     private AnnuncioService annuncioService;
 
     //Admin
-    @PostMapping
+    @PostMapping("/creareUtente")
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public UtenteRespDTO createUtente(@RequestBody @Validated UtenteDTO payload,
@@ -45,7 +45,7 @@ public class UtenteController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/listaUtenti")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Page<UtenteRespDTO> getPageUtente(@RequestParam(defaultValue = "0") int pageNumber,
                                       @RequestParam(defaultValue = "10")int pageSize){

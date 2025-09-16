@@ -26,7 +26,7 @@ public class AuthController {
     //registrazione
     @PostMapping("/registrazione")
     @ResponseStatus(HttpStatus.CREATED)
-    public UtenteRespDTO registrazione(@RequestBody @Valid UtenteDTO payload){
+    public UtenteRespDTO registrazione(@RequestBody @Validated UtenteDTO payload){
         Utente newU = this.utenteService.saveUtente(payload);
         return new UtenteRespDTO(newU.getId());
     }
@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     //admin
-    @PostMapping("/registerAdmin")
+    @PostMapping("/registrazioneAdmin")
     @ResponseStatus(HttpStatus.CREATED)
     public UtenteRespDTO createUtente(@RequestBody @Validated UtenteDTO body, BindingResult validationResult){
         if (validationResult.hasErrors()){
