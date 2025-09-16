@@ -10,15 +10,11 @@ import java.util.Map;
 
 @Configuration
 public class CloudinaryConfig {
-    @Value("${cloudinary.name}")
-    String cloudName;
-    @Value("${cloudinary.key}")
-    String cloudKey;
-    @Value("${cloudinary.secret}")
-    String cloudSecret;
 
     @Bean
-    public Cloudinary getImageUploader(){
+    public Cloudinary getImageUploader(@Value("${cloudinary.name}") String cloudName,
+                                       @Value("${cloudinary.key}") String cloudKey,
+                                       @Value("${cloudinary.secret}") String cloudSecret){
         Map<String, String> config = new HashMap<>();
         config.put("cloud_name", cloudName);
         config.put("cloud_key", cloudKey);
