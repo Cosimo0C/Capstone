@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -88,6 +90,7 @@ public class UtenteService {
     public void findByIdAndDelete(UUID utenteId){
         Utente fnd = findUtenteById(utenteId);
         this.utenteRepository.delete(fnd);
+        log.info("L'utente è stato cancellato correttamente!");
     }
     public String uploadAvatar(MultipartFile file) {
         try {
@@ -111,6 +114,7 @@ public class UtenteService {
          fnd.setTipo(Tipo.ADMIN);
          this.utenteRepository.save(fnd);
         }
+        log.info("L'utente è diventato ADMIN!");
         return fnd;
     }
     public void findUtenteByIdAndRemoveAdmin(UUID utenteId){
@@ -120,6 +124,7 @@ public class UtenteService {
         }else {
             fnd.setTipo(Tipo.PRIVATO);
             this.utenteRepository.save(fnd);
+            log.info("L'utente è diventato PRIVATO!");
         }
     }
 
@@ -131,4 +136,12 @@ public class UtenteService {
         utente.addPreferito(annuncio);
         return this.utenteRepository.save(utente);
     }
+    public UtenteDTO toDTO(Utente u) {
+        Set<UUID> preferitiIds = u.getPreferiti()
+                .stream()
+                .map(Annuncio::getId)
+                .collect(Collectors.toSet());
+        return new UtenteDTO(u.getNome(), u.getCognome(), u.getEmail(), u.getPassword(), u.getNumCellulare(),u.getDataNascita() ,u.getTipo(), preferitiIds);
+    }
+
 }

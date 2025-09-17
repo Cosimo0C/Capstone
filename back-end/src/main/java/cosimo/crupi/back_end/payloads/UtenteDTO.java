@@ -4,6 +4,8 @@ import cosimo.crupi.back_end.enums.Tipo;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.Set;
+import java.util.UUID;
 
 public record UtenteDTO(
         @NotEmpty(message = "Il nome è obbligatio per poter essere contattato")
@@ -18,10 +20,10 @@ public record UtenteDTO(
         String password,
         @NotEmpty(message = "Il numero di cellulare è importante per poter essere contattati dal possibile acquirente")
         String numCellulare,
-        @NotNull(message = "La data di nascita è obbligatoria")
         @Past(message = "La data deve essere nel passato")
         LocalDate dataNascita,
         @NotNull(message = "Il tipo deve essere definito per rendere consapevole l'utente")
-        Tipo tipo
+        Tipo tipo,
+        Set<UUID> preferitiIds
 ) {
 }

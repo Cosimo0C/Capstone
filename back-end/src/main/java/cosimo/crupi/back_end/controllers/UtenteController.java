@@ -125,10 +125,10 @@ public class UtenteController {
     }
 
     @PostMapping("/me/preferiti/{annuncioId}")
-    public Utente addPreferito(@PathVariable UUID annuncioId,
+    public UtenteDTO addPreferito(@PathVariable UUID annuncioId,
                                @AuthenticationPrincipal Utente currentAuth){
         Utente aggiornato = this.utenteService.aggiungiPreferito(currentAuth.getId(), annuncioId);
-        return aggiornato;
+        return this.utenteService.toDTO(aggiornato);
     }
 
     //annunci
