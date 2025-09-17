@@ -47,7 +47,7 @@ public class Annuncio {
     private List<Immagine> fotoAuto = new ArrayList<>();
 
     //auto
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_id")
     private Auto auto;
 

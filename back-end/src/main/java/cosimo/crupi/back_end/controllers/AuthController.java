@@ -8,7 +8,6 @@ import cosimo.crupi.back_end.payloads.UtenteDTO;
 import cosimo.crupi.back_end.payloads.UtenteRespDTO;
 import cosimo.crupi.back_end.services.AuthenticationService;
 import cosimo.crupi.back_end.services.UtenteService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

@@ -102,6 +102,7 @@ public class UtenteService {
             throw new BadRequestException("L'utente è già Admin!");
         } else{
          fnd.setTipo(Tipo.ADMIN);
+         this.utenteRepository.save(fnd);
         }
         return fnd;
     }
@@ -111,6 +112,7 @@ public class UtenteService {
             throw new BadRequestException("L'utente non è Admin!");
         }else {
             fnd.setTipo(Tipo.PRIVATO);
+            this.utenteRepository.save(fnd);
         }
     }
 }

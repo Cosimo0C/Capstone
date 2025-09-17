@@ -95,11 +95,11 @@ public class UtenteController {
 
     //me
     @GetMapping("/me")
-    public UtenteRespDTO trovaIlMioProfilo(@AuthenticationPrincipal Utente currentAuth){
-        return new UtenteRespDTO(currentAuth.getId());
+    public Utente trovaIlMioProfilo(@AuthenticationPrincipal Utente currentAuth){
+        return new Utente(currentAuth.getNome(), currentAuth.getCognome(), currentAuth.getEmail(), currentAuth.getPassword(), currentAuth.getNumCellulare(), currentAuth.getDataNascita(), currentAuth.getTipo());
     }
 
-    @PutMapping("/me")
+    @PostMapping("/me")
     public UtenteRespDTO modificaMioProfilo(@AuthenticationPrincipal Utente currentAuth,
                                             @RequestBody @Validated UtenteDTO payload,
                                             BindingResult bindingResult){
