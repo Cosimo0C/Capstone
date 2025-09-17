@@ -2,14 +2,17 @@ package cosimo.crupi.back_end.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import cosimo.crupi.back_end.entities.Annuncio;
 import cosimo.crupi.back_end.entities.Utente;
 import cosimo.crupi.back_end.enums.Tipo;
 import cosimo.crupi.back_end.exceptions.BadRequestException;
 import cosimo.crupi.back_end.exceptions.NotFoundException;
 import cosimo.crupi.back_end.payloads.UtenteDTO;
 import cosimo.crupi.back_end.repositories.UtenteRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +31,10 @@ public class UtenteService {
     private UtenteRepository utenteRepository;
 
     @Autowired
+    @Lazy
+    AnnuncioService annuncioService;
+
+    @Autowired
     private Cloudinary imageUp;
 
     @Autowired
@@ -39,7 +46,7 @@ public class UtenteService {
     }
     
     public Utente findUtenteById(UUID utenteId){
-        return this.utenteRepository.findById(utenteId).orElseThrow(()-> new NotFoundException(utenteId));
+        return this.utenteRepository.findById(utenteId).orElseThrow(()-> new NotFoundException("Utente non trovato!"));
     }
     public Utente findUtenteByEmail(String utenteEmail){
         return this.utenteRepository.findByEmail(utenteEmail).orElseThrow(()-> new NotFoundException("L'utente con questa email: " + utenteEmail + " non esiste!"));
@@ -114,5 +121,14 @@ public class UtenteService {
             fnd.setTipo(Tipo.PRIVATO);
             this.utenteRepository.save(fnd);
         }
+    }
+
+    //PREFERITI
+    @Transactional
+    public Utente aggiungiPreferito(UUID utenteId, UUID annuncioId){
+        Utente utente = findUtenteById(utenteId);
+        Annuncio annuncio = this.annuncioService.findAnnuncioById(annuncioId);
+        utente.addPreferito(annuncio);
+        return this.utenteRepository.save(utente);
     }
 }

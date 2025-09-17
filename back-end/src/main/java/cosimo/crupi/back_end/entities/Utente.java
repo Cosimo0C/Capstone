@@ -61,6 +61,9 @@ public class Utente implements UserDetails {
     )
     private Set<Annuncio> preferiti = new HashSet<>();
 
+    public void addPreferito(Annuncio annuncio){
+        this.preferiti.add(annuncio);
+    }
     @Override
     public String toString() {
         return "Utente{" +

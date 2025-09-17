@@ -22,11 +22,12 @@ import java.util.UUID;
 public class AnnuncioService {
     @Autowired
     private AnnuncioRepository annuncioRepository;
+
     @Autowired
     private UtenteService utenteService;
 
     public Annuncio findAnnuncioById(UUID annuncioId){
-        return this.annuncioRepository.findById(annuncioId).orElseThrow(()->new NotFoundException(annuncioId));
+        return this.annuncioRepository.findById(annuncioId).orElseThrow(()->new NotFoundException("Annuncio non trovato!"));
     }
     public Page<Annuncio> findAllAnnunci(int pageNum, int pageSize){
         Pageable pageable = PageRequest.of(pageNum, pageSize);
