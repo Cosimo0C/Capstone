@@ -188,6 +188,7 @@ public class UtenteController {
     // MAPPER da Annuncio Entity to DTO
     private AnnuncioDTO mapADTO(Annuncio annuncio){
         return new AnnuncioDTO(
+                annuncio.getId(),
                 annuncio.getTitolo(),
                 annuncio.getDescrizione(),
                 annuncio.getPrezzo(),
