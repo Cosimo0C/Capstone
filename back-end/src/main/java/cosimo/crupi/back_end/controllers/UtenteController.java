@@ -8,7 +8,6 @@ import cosimo.crupi.back_end.payloads.*;
 import cosimo.crupi.back_end.services.AnnuncioService;
 import cosimo.crupi.back_end.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

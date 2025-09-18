@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CarCard from "../CarCard/CardCard";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -27,17 +28,12 @@ const Home = () => {
 
   return (
     <>
-      {console.log("annunci", annunci)}
       <h1 className="text-success w-100 text-center">Benvenuti!</h1>
       {isLoading && <p className="text-center text-light">Caricamento...</p>}
       <div>
         {annunci.length > 0 ? (
-          <div>
-            {annunci.map((annuncio, i) => (
-              <div key={i}>
-                <div className="text-light">{annuncio.titolo}</div>
-              </div>
-            ))}
+          <div className="d-flex gap-3">
+            <CarCard annunci={annunci} />
           </div>
         ) : (
           !isLoading && <p className="text-center text-light">Al momento non ci sono annunci. Arrivederci!</p>
