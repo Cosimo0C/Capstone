@@ -34,8 +34,8 @@ const Home = () => {
         {annunci.length > 0 ? (
           <div>
             {annunci.map((annuncio, i) => (
-              <div>
-                <div>{annuncio.titolo}</div>
+              <div key={i}>
+                <div className="text-light">{annuncio.titolo}</div>
               </div>
             ))}
           </div>
