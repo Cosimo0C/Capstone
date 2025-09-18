@@ -2,7 +2,6 @@ package cosimo.crupi.services;
 
 import cosimo.crupi.entities.Annuncio;
 import cosimo.crupi.entities.Auto;
-import cosimo.crupi.entities.Immagine;
 import cosimo.crupi.entities.Utente;
 import cosimo.crupi.exceptions.NotFoundException;
 import cosimo.crupi.payloads.AnnuncioDTO;
@@ -38,12 +37,11 @@ public class AnnuncioService {
         Auto auto = new Auto(payload.auto().marca(), payload.auto().modello(), payload.auto().anno(), payload.auto().potenza(), payload.auto().cambio(), payload.auto().carburante(), payload.auto().chilometri());
 
         Annuncio annuncio = new Annuncio(payload.titolo(), payload.descrizione(), payload.prezzo(), LocalDate.now(), auto, venditore);
-        if (payload.imgAuto() != null) {
-            for (String url : payload.imgAuto()) {
-                Immagine immagine = new Immagine(url);
-                annuncio.getFotoAuto().add(immagine);
-            }
+
+        if (payload.imgAuto() != null){
+            annuncio.getImgAuto().addAll(payload.imgAuto());
         }
+
         log.info("L'annuncio è stato salvato correttamente!");
         return this.annuncioRepository.save(annuncio);
     }
@@ -65,11 +63,10 @@ public class AnnuncioService {
         fndAuto.setChilometri(payload.auto().chilometri());
 
         if (payload.imgAuto() != null){
-            fnd.getFotoAuto().clear();
-            for (String url : payload.imgAuto()){
-                fnd.getFotoAuto().add(new Immagine(url));
-            }
+            fnd.getImgAuto().clear();
+            fnd.getImgAuto().addAll(payload.imgAuto());
         }
+
         log.info("L'annuncio è stato aggiornato correttamente!");
         return this.annuncioRepository.save(fnd);
     }

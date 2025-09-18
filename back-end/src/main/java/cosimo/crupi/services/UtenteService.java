@@ -99,7 +99,7 @@ public class UtenteService {
             return imgUrl;
 
         } catch (IOException ex) {
-            throw new BadRequestException("Errore nel salvataggio!");
+            throw new BadRequestException("Errore nel salvataggio dell'avatar!");
         }
     }
 

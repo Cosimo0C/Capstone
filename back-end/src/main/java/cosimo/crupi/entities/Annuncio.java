@@ -30,22 +30,24 @@ public class Annuncio {
     private String descrizione;
     private int prezzo;
     private LocalDate dataPubblicazione;
-    private ArrayList<String> imgAuto;
+
+    //immagini
+    @ElementCollection
+    @CollectionTable(
+            name = "annuncio_img_auto",
+            joinColumns = @JoinColumn(name = "annuncioId")
+    )
+    @Column(name = "url")
+    private List<String> imgAuto = new ArrayList<>();
 
     public Annuncio(String titolo, String descrizione, int prezzo, LocalDate dataPubblicazione, Auto auto, Utente utente) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.prezzo = prezzo;
         this.dataPubblicazione=dataPubblicazione;
-        this.fotoAuto = fotoAuto;
         this.auto = auto;
         this.utente = utente;
     }
-
-    //immagine
-    @OneToMany
-    @JoinColumn(name = "immagine_id")
-    private List<Immagine> fotoAuto = new ArrayList<>();
 
     //auto
     @OneToOne(cascade = CascadeType.ALL)
@@ -62,7 +64,7 @@ public class Annuncio {
         return "Annuncio{" +
                 "id=" + id +
                 ", titolo='" + titolo + '\'' +
-                ", Descrizione='" + descrizione + '\'' +
+                ", descrizione='" + descrizione + '\'' +
                 ", prezzo=" + prezzo +
                 ", dataPubblicazione=" + dataPubblicazione +
                 '}';

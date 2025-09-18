@@ -120,7 +120,7 @@ public class UtenteController {
         this.utenteService.findByIdAndDelete(currentAuth.getId());
     }
 
-    @PatchMapping("/{utenteId}/avatar")
+    @PatchMapping("/me/avatar")
     public String uploadImg(@RequestParam("avatar")MultipartFile file){
         System.out.println(file.getOriginalFilename());
         return this.utenteService.uploadAvatar(file);
@@ -200,7 +200,7 @@ public class UtenteController {
                         annuncio.getAuto().getCarburante(),
                         annuncio.getAuto().getChilometri()
                 ),
-                annuncio.getFotoAuto().stream().map(immagine -> immagine.getUrl()).toList()
+                annuncio.getImgAuto()
         );
     }
 }
