@@ -27,19 +27,22 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <h1 className="text-success w-100 text-center">Benvenuti!</h1>
+    <div className="container my-4">
+      <h1 className="text-success text-center mb-4">Benvenuti!</h1>
       {isLoading && <p className="text-center text-light">Caricamento...</p>}
-      <div>
-        {annunci.length > 0 ? (
-          <div className="d-flex gap-3">
-            <CarCard annunci={annunci} />
-          </div>
-        ) : (
-          !isLoading && <p className="text-center text-light">Al momento non ci sono annunci. Arrivederci!</p>
-        )}
-      </div>
-    </>
+
+      {annunci.length > 0 ? (
+        <div className="row justify-content-center">
+          {annunci.map((annuncio, i) => (
+            <div key={i} className="col-12 col-sm-6 col-lg-4 mb-4 d-flex justify-content-center">
+              <CarCard annuncio={annuncio} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        !isLoading && <p className="text-center text-light">Al momento non ci sono annunci. Arrivederci!</p>
+      )}
+    </div>
   );
 };
 
