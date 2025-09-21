@@ -1,0 +1,11 @@
+@import "../../../styles/partials/variables";
+@media (max-width: 560px) {
+  .regolazione {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .regolazione p:nth-child(2) {
+    display: none;
+  }
+}

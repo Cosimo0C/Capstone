@@ -2,13 +2,14 @@ import { Button } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import { BsDot } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
+import "./Style/_carCard.scss";
 const CarCard = ({ annuncio }) => {
   return (
     <div className="bg-secondary rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
       <Carousel interval={null} slide={false} className="mt-3">
         {annuncio.imgAuto.map((img, j) => (
-          <Carousel.Item key={j} className="carosello-items">
-            <img src="" alt={`immagine auto ${j}`} className="img-auto" /> {/*  /**da risolvere immagini */}
+          <Carousel.Item key={j}>
+            <img src={img} alt={`immagine auto ${j}`} id="img-auto" /> {/*  /**da risolvere immagini */}
           </Carousel.Item>
         ))}
       </Carousel>

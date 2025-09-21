@@ -40,8 +40,10 @@ function MyFooter() {
       </div>
       <div className="d-flex flex-column align-items-center">
         <div className="bg-success w-75" style={{ height: "2px" }}></div>
-        <div>
-          <p>Copyright 2025 a cura di CarsBuy Tutti i diritti riservati. | CarsBuy Italia S.p.a. - P. IVA IT03384947891</p>
+        <div className="d-flex regolazione">
+          <p>Copyright 2025 a cura di CarsBuy Tutti i diritti riservati.</p>
+          <p className="mx-2">|</p>
+          <p>CarsBuy Italia S.p.a. - P. IVA IT03384947891</p>
         </div>
       </div>
     </div>
