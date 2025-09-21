@@ -6,7 +6,7 @@ import "./Style/_carCard.scss";
 const CarCard = ({ annuncio }) => {
   return (
     <div className="bg-secondary rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
-      <Carousel interval={null} slide={false} className="mt-3">
+      <Carousel interval={null} slide={false} className="mt-3" controls={null}>
         {annuncio.imgAuto.map((img, j) => (
           <Carousel.Item key={j}>
             <img src={img} alt={`immagine auto ${j}`} id="img-auto" /> {/*  /**da risolvere immagini */}
