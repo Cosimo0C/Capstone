@@ -8,12 +8,16 @@ import ButtonDropdown from "./ButtonDropdown";
 import logo from "../../assets/icona.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function MyNavbar() {
   const [mostraLogin, setMostraLogin] = useState(false);
   const [errore, setErrore] = useState("");
   const [loading, setLoading] = useState(false);
   const [seiLoggato, setSeiLoggato] = useState(false);
   const [mostraPass, setMostraPass] = useState(false);
+  const [loginOk, setLoginOk] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,27 +37,35 @@ function MyNavbar() {
     setLoading(true);
     setErrore("");
 
-    const username = e.target.value;
-    const password = e.target.value;
+    const email = e.target.username.value;
+    const password = e.target.password.value;
 
     try {
       const resp = await fetch("http://localhost:8090/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
       const dati = await resp.json();
+      {
+        console.log(username);
+        console.log(password);
+        console.log(dati);
+      }
       if (resp.ok) {
-        alert("Login effettuato");
+        toast.success("Login effettuato con successo!");
         localStorage.setItem("token", dati.token);
         setSeiLoggato(true);
         handleChiudi();
       } else {
+        toast.error("Errore login!");
         setErrore(dati.messagge || "Errore login");
+        setLoginOk(false);
       }
     } catch (error) {
       console.log(error);
       setErrore("Impossibile Conttare il server! Riprova più tardi!");
+      setLoginOk(false);
     }
     setLoading(false);
   };
@@ -61,10 +73,12 @@ function MyNavbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setSeiLoggato(false);
+    toast.info("Logout effettuato");
   };
 
   return (
     <>
+      {loginOk && <ToastContainer position="top-center" autoClose={3000} />}
       <Navbar collapseOnSelect expand="lg" className="bg-primary p-0">
         <Container fluid className="d-flex p-2 justify-content-between align-items-center flex-wrap m-0">
           <Navbar.Brand className="d-flex align-items-center gap-sm-4">
@@ -78,6 +92,11 @@ function MyNavbar() {
               <Nav className="gap-4">
                 <button className="btn-nav border-0 fs-4 fw-medium">Cerca l'auto</button>
                 <button className="btn-nav border-0 fs-4 fw-medium">Vendi la tua auto</button>
+                {seiLoggato && (
+                  <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none pt-2" to={"/MieiAnnunci"}>
+                    I miei annunci
+                  </Link>
+                )}
                 <button className="btn-nav border-0 fs-4 fw-medium">Garanzia</button>
                 <ButtonDropdown />
               </Nav>

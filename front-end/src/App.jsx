@@ -6,6 +6,7 @@ import MyFooter from "./component/MyFooter/MyFooter.jsx";
 import Home from "./component/Home/Home.jsx";
 import "./styles/main.scss";
 import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
+import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/ComeFunziona" element={<ComeFunziona />} />
             <Route path="/ChiSiamo" element={<ChiSiamo />} />
+            <Route path="/MieiAnnunci" element={<MieiAnnunci />} />
           </Routes>
         </div>
         <MyFooter />
