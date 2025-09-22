@@ -3,13 +3,16 @@ import Carousel from "react-bootstrap/Carousel";
 import { BsDot } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import "./Style/_carCard.scss";
-const CarCard = ({ annuncio }) => {
+import { useDispatch } from "react-redux";
+const CarCard = ({ annuncio, preferiti }) => {
+  const dispach = useDispatch();
+
   return (
     <div className="bg-secondary rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
       <Carousel interval={null} slide={false} className="mt-3" controls={null}>
         {annuncio.imgAuto.map((img, j) => (
           <Carousel.Item key={j}>
-            <img src={img} alt={`immagine auto ${j}`} id="img-auto" /> {/*  /**da risolvere immagini */}
+            <img src={img} alt={`immagine auto ${j}`} id="img-auto" />
           </Carousel.Item>
         ))}
       </Carousel>
@@ -30,10 +33,12 @@ const CarCard = ({ annuncio }) => {
         </div>
       </div>
       <div className="d-flex justify-content-between align-items-end w-75 m-2">
-        <Button variant="secondary">
-          {" "}
-          <FaHeart className="h-b fs-2" />
-        </Button>
+        {!preferiti && (
+          <Button variant="secondary" onClick={() => dispach({ type: "ADD_PREFERITI", payload: annuncio })}>
+            {" "}
+            <FaHeart className="h-b fs-2" />
+          </Button>
+        )}
         <Button variant="secondary" className="text-light fs-5">
           Visualizza auto
         </Button>

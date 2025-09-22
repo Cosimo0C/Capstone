@@ -5,3 +5,11 @@
   object-fit: contain;
   object-position: center;
 }
+.h-b {
+  display: inline-block;
+  transition: transform 0.1s ease;
+}
+
+.h-b :active {
+  transform: translateY(20px) scale(0.9);
+}

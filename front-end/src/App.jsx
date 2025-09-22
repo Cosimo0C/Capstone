@@ -7,6 +7,7 @@ import Home from "./component/Home/Home.jsx";
 import "./styles/main.scss";
 import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
 import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
+import Preferiti from "./component/Preferiti/Preferiti.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/ComeFunziona" element={<ComeFunziona />} />
             <Route path="/ChiSiamo" element={<ChiSiamo />} />
             <Route path="/MieiAnnunci" element={<MieiAnnunci />} />
+            <Route path="/Preferiti" element={<Preferiti />} />
           </Routes>
         </div>
         <MyFooter />

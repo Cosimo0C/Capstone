@@ -101,10 +101,10 @@ function MyNavbar() {
                 <ButtonDropdown />
               </Nav>
               <Nav className="d-flex align-items-center gap-sm-4 flex-row">
-                <button className="heart-btn btn d-flex alig-items-center justify-content-center position-relative bg-transparent border-0">
+                <Link className="heart-btn btn d-flex alig-items-center justify-content-center position-relative bg-transparent border-0" to={"/Preferiti"}>
                   <FaHeart className="icon default" />
                   <FaRegHeart className="icon hover" />
-                </button>
+                </Link>
                 {seiLoggato ? (
                   <button className="lgn-btn rounded-pill p-2 fw-medium fs-5" onClick={handleLogout}>
                     Logout

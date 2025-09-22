@@ -1,0 +1,9 @@
+@import "../../../styles/partials/variables";
+.d-b {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.d-b :active {
+  transform: translateY(20px) scale(0.9);
+}
