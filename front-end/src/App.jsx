@@ -9,6 +9,7 @@ import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
 import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
 import Preferiti from "./component/Preferiti/Preferiti.jsx";
 import Registrazione from "./component/Registrazione/REgistrazione.jsx";
+import Contattaci from "./component/Contattaci/Contattaci.jsx";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/MieiAnnunci" element={<MieiAnnunci />} />
             <Route path="/Preferiti" element={<Preferiti />} />
             <Route path="/Registrazione" element={<Registrazione />} />
+            <Route path="/Contattaci" element={<Contattaci />} />
           </Routes>
         </div>
         <MyFooter />
