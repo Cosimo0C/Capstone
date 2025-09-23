@@ -54,3 +54,11 @@
   background-color: $success !important;
   color: $light !important;
 }
+.butt {
+  display: inline-block;
+  transition: transform 0.2s ease !important;
+}
+
+.butt :active {
+  transform: translateY(20px) scale(0.9) !important;
+}

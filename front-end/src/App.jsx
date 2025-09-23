@@ -8,6 +8,7 @@ import "./styles/main.scss";
 import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
 import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
 import Preferiti from "./component/Preferiti/Preferiti.jsx";
+import Registrazione from "./component/Registrazione/REgistrazione.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/ChiSiamo" element={<ChiSiamo />} />
             <Route path="/MieiAnnunci" element={<MieiAnnunci />} />
             <Route path="/Preferiti" element={<Preferiti />} />
+            <Route path="/Registrazione" element={<Registrazione />} />
           </Routes>
         </div>
         <MyFooter />

@@ -101,10 +101,12 @@ function MyNavbar() {
                 <ButtonDropdown />
               </Nav>
               <Nav className="d-flex align-items-center gap-sm-4 flex-row">
-                <Link className="heart-btn btn d-flex alig-items-center justify-content-center position-relative bg-transparent border-0" to={"/Preferiti"}>
-                  <FaHeart className="icon default" />
-                  <FaRegHeart className="icon hover" />
-                </Link>
+                {seiLoggato && (
+                  <Link className="heart-btn btn d-flex alig-items-center justify-content-center position-relative bg-transparent border-0" to={"/Preferiti"}>
+                    <FaHeart className="icon default" />
+                    <FaRegHeart className="icon hover" />
+                  </Link>
+                )}
                 {seiLoggato ? (
                   <button className="lgn-btn rounded-pill p-2 fw-medium fs-5" onClick={handleLogout}>
                     Logout
@@ -142,8 +144,13 @@ function MyNavbar() {
               </InputGroup>
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100" disabled={loading}>
+            <Button variant="primary" type="submit" className="w-100 butt" disabled={loading}>
               {loading ? "Caricamento..." : "Accedi"}
+            </Button>
+            <Button variant="light" className="w-100 mt-2 text-white butt" onClick={handleChiudi}>
+              <Link className="text-decoration-none text-white" to={"/Registrazione"}>
+                Registrati
+              </Link>
             </Button>
           </Form>
         </Modal.Body>
