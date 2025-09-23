@@ -10,6 +10,8 @@ import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
 import Preferiti from "./component/Preferiti/Preferiti.jsx";
 import Registrazione from "./component/Registrazione/REgistrazione.jsx";
 import Contattaci from "./component/Contattaci/Contattaci.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       <BrowserRouter>
         <MyNavbar />
         <div className="page-content">
+          <ToastContainer position="top-center" autoClose={3000} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ComeFunziona" element={<ComeFunziona />} />

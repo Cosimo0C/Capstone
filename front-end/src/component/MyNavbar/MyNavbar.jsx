@@ -8,7 +8,7 @@ import ButtonDropdown from "./ButtonDropdown";
 import logo from "../../assets/icona.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function MyNavbar() {
@@ -78,7 +78,6 @@ function MyNavbar() {
 
   return (
     <>
-      {loginOk && <ToastContainer position="top-center" autoClose={3000} />}
       <Navbar collapseOnSelect expand="lg" className="bg-primary p-0">
         <Container fluid className="d-flex p-2 justify-content-between align-items-center flex-wrap m-0">
           <Navbar.Brand className="d-flex align-items-center gap-sm-4">

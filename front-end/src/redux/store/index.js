@@ -1,12 +1,12 @@
-import { combineReducers, configureStore, createStore } from "@reduxjs/toolkit";
-import mainReducer from "../reducers/preferiti";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "../reducers/login";
+import prefReducer from "../reducers/preferiti";
 
 const rootReducer = combineReducers({
-  pref: mainReducer,
+  pref: prefReducer,
   auth: authReducer,
 });
 const store = configureStore({
-  reducer: mainReducer,
+  reducer: rootReducer,
 });
 export default store;

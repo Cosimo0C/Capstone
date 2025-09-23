@@ -1,11 +1,25 @@
-import { Button } from "react-bootstrap";
+import { Button, Toast, ToastContainer } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import { BsDot } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import "./Style/_carCard.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const CarCard = ({ annuncio, preferiti }) => {
   const dispach = useDispatch();
+  const annunciPref = useSelector((state) => state.pref.preferiti);
+
+  const handlePref = (annuncio) => {
+    console.log(annunciPref);
+    if (annunciPref.some((a) => a.id == annuncio.id)) {
+      toast.warn("è già nei preferiti");
+    } else {
+      dispach({ type: "ADD_PREFERITI", payload: annuncio });
+      toast.success("Aggiunto ai preferiti!");
+    }
+  };
 
   return (
     <div className="bg-secondary rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
@@ -34,7 +48,7 @@ const CarCard = ({ annuncio, preferiti }) => {
       </div>
       <div className="d-flex justify-content-between align-items-end w-75 m-2">
         {!preferiti && (
-          <Button variant="secondary" onClick={() => dispach({ type: "ADD_PREFERITI", payload: annuncio })}>
+          <Button variant="secondary" onClick={() => handlePref(annuncio)}>
             {" "}
             <FaHeart className="h-b fs-2" />
           </Button>
