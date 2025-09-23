@@ -126,13 +126,6 @@ public class UtenteController {
         return this.utenteService.uploadAvatar(file);
     }
 
-    @PostMapping("/me/preferiti/{annuncioId}")
-    public UtenteDTO addPreferito(@PathVariable UUID annuncioId,
-                               @AuthenticationPrincipal Utente currentAuth){
-        Utente aggiornato = this.utenteService.aggiungiPreferito(currentAuth.getId(), annuncioId);
-        return this.utenteService.toDTO(aggiornato);
-    }
-
     //annunci
     @GetMapping("/annunci")
     public  Page<AnnuncioDTO> getAnnunci(@RequestParam(defaultValue = "0")int pageNumber,

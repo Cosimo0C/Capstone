@@ -52,18 +52,6 @@ public class Utente implements UserDetails {
         this.tipo=tipo;
     }
 
-    //annunci nei preferiti
-    @ManyToMany
-    @JoinTable(
-            name = "preferiti",
-            joinColumns = @JoinColumn(name = "utente_id"),
-            inverseJoinColumns = @JoinColumn(name = "annuncio_id")
-    )
-    private Set<Annuncio> preferiti = new HashSet<>();
-
-    public void addPreferito(Annuncio annuncio){
-        this.preferiti.add(annuncio);
-    }
     @Override
     public String toString() {
         return "Utente{" +

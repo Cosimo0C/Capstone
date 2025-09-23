@@ -9,7 +9,6 @@ import cosimo.crupi.exceptions.BadRequestException;
 import cosimo.crupi.exceptions.NotFoundException;
 import cosimo.crupi.payloads.UtenteDTO;
 import cosimo.crupi.repositories.UtenteRepository;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -126,22 +125,6 @@ public class UtenteService {
             this.utenteRepository.save(fnd);
             log.info("L'utente è diventato PRIVATO!");
         }
-    }
-
-    //PREFERITI
-    @Transactional
-    public Utente aggiungiPreferito(UUID utenteId, UUID annuncioId){
-        Utente utente = findUtenteById(utenteId);
-        Annuncio annuncio = this.annuncioService.findAnnuncioById(annuncioId);
-        utente.addPreferito(annuncio);
-        return this.utenteRepository.save(utente);
-    }
-    public UtenteDTO toDTO(Utente u) {
-        Set<UUID> preferitiIds = u.getPreferiti()
-                .stream()
-                .map(Annuncio::getId)
-                .collect(Collectors.toSet());
-        return new UtenteDTO(u.getNome(), u.getCognome(), u.getEmail(), u.getPassword(), u.getNumCellulare(),u.getDataNascita() ,u.getTipo(), preferitiIds);
     }
 
 }
