@@ -11,7 +11,7 @@ function MyFooter() {
       <div className="d-flex justify-content-around">
         <div>
           <h1>CarsBuy</h1>
-          <ul>
+          <ul className="btn text-success">
             <li>Garanzia</li>
             <li>Come funziona</li>
             <li>Chi siamo</li>
@@ -20,7 +20,7 @@ function MyFooter() {
         </div>
         <div>
           <h2>Sempre con te</h2>
-          <ul>
+          <ul className="btn text-success">
             <li>
               {" "}
               <AiFillAndroid /> CarsBuy per Android
