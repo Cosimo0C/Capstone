@@ -96,7 +96,6 @@ function MyNavbar() {
                     I miei annunci
                   </Link>
                 )}
-                <button className="btn-nav border-0 fs-4 fw-medium">Garanzia</button>
                 <ButtonDropdown />
               </Nav>
               <Nav className="d-flex align-items-center gap-sm-4 flex-row">

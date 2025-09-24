@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import "./Style/_preferiti.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { REMOVE_PREFERITI } from "../../redux/action";
 
 const Preferiti = () => {
   const annunciPref = useSelector((state) => state.pref.preferiti);
@@ -20,7 +21,7 @@ const Preferiti = () => {
             <Button
               className="w-25"
               onClick={() => {
-                dispach({ type: "REMOVE_PREFERITI", payload: annuncio.id });
+                dispach({ type: REMOVE_PREFERITI, payload: annuncio.id });
                 toast.info("Rimosso correttamente!");
               }}
             >

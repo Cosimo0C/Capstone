@@ -24,6 +24,6 @@ public record UtenteDTO(
         LocalDate dataNascita,
         @NotNull(message = "Il tipo deve essere definito per rendere consapevole l'utente")
         Tipo tipo,
-        Set<UUID> preferitiIds
+        Set<UUID> preferitiIdsv5yft
 ) {
 }

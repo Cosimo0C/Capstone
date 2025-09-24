@@ -1,9 +1,11 @@
+import { ADD_PREFERITI, REMOVE_PREFERITI } from "../action";
+
 const initialState = {
   preferiti: [],
 };
 const prefReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_PREFERITI":
+    case ADD_PREFERITI:
       console.log("ACTION", action);
       const esiste = state.preferiti.some((annuncio) => annuncio.id == action.payload.id);
       if (esiste) {
@@ -15,7 +17,7 @@ const prefReducer = (state = initialState, action) => {
           preferiti: [...state.preferiti, action.payload],
         };
       }
-    case "REMOVE_PREFERITI":
+    case REMOVE_PREFERITI:
       console.log("tolto dai preferiti");
       return {
         ...state,

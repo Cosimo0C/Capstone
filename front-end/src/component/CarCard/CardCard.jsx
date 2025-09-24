@@ -6,6 +6,7 @@ import "./Style/_carCard.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ADD_PREFERITI } from "../../redux/action";
 
 const CarCard = ({ annuncio, preferiti }) => {
   const dispach = useDispatch();
@@ -16,7 +17,7 @@ const CarCard = ({ annuncio, preferiti }) => {
     if (annunciPref.some((a) => a.id == annuncio.id)) {
       toast.warn("è già nei preferiti");
     } else {
-      dispach({ type: "ADD_PREFERITI", payload: annuncio });
+      dispach({ type: ADD_PREFERITI, payload: annuncio });
       toast.success("Aggiunto ai preferiti!");
     }
   };
