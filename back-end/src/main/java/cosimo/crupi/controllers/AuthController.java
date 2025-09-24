@@ -25,9 +25,14 @@ public class AuthController {
     //registrazione
     @PostMapping("/registrazione")
     @ResponseStatus(HttpStatus.CREATED)
-    public UtenteRespDTO registrazione(@RequestBody @Validated UtenteDTO payload){
-        Utente newU = this.utenteService.saveUtente(payload);
-        return new UtenteRespDTO(newU.getId());
+    public UtenteRespDTO registrazione(@RequestBody @Validated UtenteDTO payload, BindingResult validationResult){
+        if (validationResult.hasErrors()){
+            throw new ValidationException(validationResult.getFieldErrors()
+                    .stream().map(fieldError -> fieldError.getDefaultMessage()).toList());
+        }else {
+            Utente newU = this.utenteService.saveUtente(payload);
+            return new UtenteRespDTO(newU.getId());
+        }
     }
 
     //login

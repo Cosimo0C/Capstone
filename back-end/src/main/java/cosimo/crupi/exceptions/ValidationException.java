@@ -8,4 +8,7 @@ public class ValidationException extends RuntimeException {
         super("Errori di validazione!");
         this.errorMess=errorMess;
     }
+    public List<String> getErrorMess(){
+        return errorMess;
+    }
 }

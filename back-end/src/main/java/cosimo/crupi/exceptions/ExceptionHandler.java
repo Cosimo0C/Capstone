@@ -1,6 +1,7 @@
 package cosimo.crupi.exceptions;
 
 import cosimo.crupi.payloads.errors.ErrorsDTO;
+import cosimo.crupi.payloads.errors.ErrorsListDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -12,12 +13,18 @@ import java.time.LocalDateTime;
 public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(ValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorsDTO handleBadRequest(BadRequestException ex){
-        return new ErrorsDTO(ex.getMessage(), LocalDateTime.now());
+    public ErrorsListDTO handleValidRequest(ValidationException ex){
+        return new ErrorsListDTO("Errori di validazione",LocalDateTime.now(), ex.getErrorMess());
     }
     @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorsDTO handleNotFound(NotFoundException ex) {
+        return new ErrorsDTO(ex.getMessage(), LocalDateTime.now());
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorsDTO handleBadRequest(BadRequestException ex){
         return new ErrorsDTO(ex.getMessage(), LocalDateTime.now());
     }
 
