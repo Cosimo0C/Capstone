@@ -89,10 +89,12 @@ function MyNavbar() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <div className="d-flex justify-content-between w-100">
               <Nav className="gap-4">
-                <button className="btn-nav border-0 fs-4 fw-medium">Cerca l'auto</button>
+                <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none p-2" to={"/"}>
+                  Cerca l'auto
+                </Link>
                 <button className="btn-nav border-0 fs-4 fw-medium">Vendi la tua auto</button>
                 {seiLoggato && (
-                  <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none pt-2" to={"/MieiAnnunci"}>
+                  <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none p-2" to={"/MieiAnnunci"}>
                     I miei annunci
                   </Link>
                 )}
