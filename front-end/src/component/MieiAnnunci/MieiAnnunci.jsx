@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DeleteAnnuncio from "./DeleteAnnuncio";
 import CarCard from "../CarCard/CardCard";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+
 function MieiAnnunci() {
   const [isLoading, setIsLoading] = useState(false);
   const { isLoggedIn, token } = useSelector((state) => state.auth);
@@ -49,6 +52,12 @@ function MieiAnnunci() {
             <div key={annuncio.id} className="col-11 col-sm-11 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex flex-column justify-content-center">
               <CarCard annuncio={annuncio} />
               <DeleteAnnuncio annuncioId={annuncio.id} onDelete={getMieiAnnunci} />
+              <Link to={"/ModAnnuncio"} state={{ annuncio }} className="d-flex justify-content-center text-decoration-none">
+                {" "}
+                <Button variant="light" className="text-success">
+                  Modifica Annunncio
+                </Button>
+              </Link>
             </div>
           ))}
         </div>

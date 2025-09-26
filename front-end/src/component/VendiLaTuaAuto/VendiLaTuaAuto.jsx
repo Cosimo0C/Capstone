@@ -41,15 +41,7 @@ function VendiLaTuaAuto() {
         carburante: e.target.carburante.value,
         chilometri: parseInt(e.target.chilometri.value, 10) || 0,
       },
-      imgAuto: imgAuto
-        .filter((url) => url.trim() !== "")
-        .map((url) => {
-          if (url.startsWith("data:image")) {
-            return url.split(",")[1];
-          } else {
-            return url;
-          }
-        }),
+      imgAuto: imgAuto.filter((url) => url.trim() !== ""),
     };
 
     try {
@@ -63,10 +55,6 @@ function VendiLaTuaAuto() {
       });
 
       const dati = await resp.json();
-      console.log("body", body);
-      console.log("token", token);
-      console.log("token", token);
-      console.log("risposta server", resp.status);
 
       if (resp.ok) {
         toast.success("Annuncio pubblicato con successo!");

@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VendiLaTuaAuto from "./component/VendiLaTuaAuto/VendiLaTuaAuto.jsx";
 import Dettagli from "./component/Dettagli/Dettagli.jsx";
+import ModAnnuncio from "./component/ModAnnuncio/ModAnnuncio.jsx";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/Contattaci" element={<Contattaci />} />
             <Route path="/VendiLaTuaAuto" element={<VendiLaTuaAuto />} />
             <Route path="/Dettagli" element={<Dettagli />} />
+            <Route path="/ModAnnuncio" element={<ModAnnuncio />} />
           </Routes>
         </div>
         <MyFooter />

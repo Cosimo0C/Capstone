@@ -56,6 +56,10 @@ public class AnnuncioService {
 
 
         Auto fndAuto = fnd.getAuto();
+        if(fndAuto == null){
+            fndAuto = new Auto();
+            fnd.setAuto(fndAuto);
+        }
         fndAuto.setMarca(payload.auto().marca());
         fndAuto.setModello(payload.auto().modello());
         fndAuto.setAnno(payload.auto().anno());
