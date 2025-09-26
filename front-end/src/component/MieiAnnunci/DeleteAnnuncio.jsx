@@ -45,7 +45,7 @@ function DeleteAnnuncio({ annuncioId, onDelete }) {
   return (
     <>
       <Button className="bg-transparent border-0 btn-delete">
-        <AiFillDelete className="text-alert" onClick={deleteAnnuncio} />
+        <AiFillDelete className="text-alert fs-1" onClick={deleteAnnuncio} />
       </Button>
     </>
   );

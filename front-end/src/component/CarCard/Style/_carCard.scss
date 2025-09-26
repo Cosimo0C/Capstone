@@ -13,3 +13,13 @@
 .h-b :active {
   transform: translateY(20px) scale(0.9);
 }
+.visualizza {
+  padding: 5px;
+  border-radius: 7%;
+  &:hover {
+    background-color: (lighten($secondary, $amount: 10));
+  }
+  &:active {
+    transform: translateY(1px) scale(0.9);
+  }
+}

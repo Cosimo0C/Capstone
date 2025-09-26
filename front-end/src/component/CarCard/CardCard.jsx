@@ -1,4 +1,4 @@
-import { Button, Toast, ToastContainer } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import { BsDot } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ADD_PREFERITI } from "../../redux/action";
+import { Link } from "react-router-dom";
+import Dettagli from "../Dettagli/Dettagli";
 
 const CarCard = ({ annuncio, preferiti }) => {
   const dispach = useDispatch();
@@ -54,9 +56,9 @@ const CarCard = ({ annuncio, preferiti }) => {
             <FaHeart className="h-b fs-2" />
           </Button>
         )}
-        <Button variant="secondary" className="text-light fs-5">
+        <Link to={"/Dettagli"} state={{ annuncio }} className="text-decoration-none text-light fs-5 visualizza">
           Visualizza auto
-        </Button>
+        </Link>
       </div>
     </div>
   );
