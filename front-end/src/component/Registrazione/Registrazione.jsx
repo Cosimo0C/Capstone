@@ -28,8 +28,8 @@ function Registrazione() {
       tipo: e.target.tipo.value,
     };
 
-    if (body.password.length < 8) {
-      toast.error("La password deve avere almeno 8 caratteri");
+    if (body.password.length < 6) {
+      toast.error("La password deve avere almeno 6 caratteri");
       setIsLoading(false);
       return;
     }
@@ -43,9 +43,8 @@ function Registrazione() {
         body: JSON.stringify(body),
       });
 
-      const dati = await resp.json();
-
       if (resp.ok) {
+        const dati = await resp.json();
         toast.success("Registrazione avvenuta con successo!");
         e.target.reset();
         setTimeout(() => handleOk(), 2000);
@@ -53,14 +52,14 @@ function Registrazione() {
         dati.errorsList.forEach((err) => toast.error(err));
         setErrore(dati.errorsList.join(", "));
       } else if (dati.msg) {
-        toast.warn(dati.msg);
+        toast.error(dati.msg);
         setErrore(dati.msg);
       } else {
-        toast.warn("Errore nella registrazione!");
+        toast.error("Errore nella registrazione!");
         setErrore("Errore nella registrazione!");
       }
     } catch (error) {
-      toast.warn(error.message);
+      toast.error(error.message);
       setErrore("Impossibile conttatare il server! Riprova più tardi!");
     } finally {
       setIsLoading(false);

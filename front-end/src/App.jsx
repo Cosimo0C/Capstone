@@ -12,6 +12,7 @@ import Registrazione from "./component/Registrazione/REgistrazione.jsx";
 import Contattaci from "./component/Contattaci/Contattaci.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import VendiLaTuaAuto from "./component/VendiLaTuaAuto/VendiLaTuaAuto.jsx";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/Preferiti" element={<Preferiti />} />
             <Route path="/Registrazione" element={<Registrazione />} />
             <Route path="/Contattaci" element={<Contattaci />} />
+            <Route path="/VendiLaTuaAuto" element={<VendiLaTuaAuto />} />
           </Routes>
         </div>
         <MyFooter />

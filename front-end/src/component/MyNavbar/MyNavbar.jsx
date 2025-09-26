@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { loginSuccess, logout } from "../../redux/action";
 
 function MyNavbar() {
   const [mostraLogin, setMostraLogin] = useState(false);
@@ -17,7 +19,8 @@ function MyNavbar() {
   const [loading, setLoading] = useState(false);
   const [seiLoggato, setSeiLoggato] = useState(false);
   const [mostraPass, setMostraPass] = useState(false);
-  const [loginOk, setLoginOk] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -48,30 +51,30 @@ function MyNavbar() {
       });
       const dati = await resp.json();
       {
-        console.log(username);
+        console.log(email);
         console.log(password);
         console.log(dati);
       }
       if (resp.ok) {
         toast.success("Login effettuato con successo!");
-        localStorage.setItem("token", dati.token);
+        localStorage.setItem("token", dati.accT);
         setSeiLoggato(true);
+        dispatch(loginSuccess(dati.accT));
         handleChiudi();
       } else {
         toast.error("Errore login!");
         setErrore(dati.messagge || "Errore login");
-        setLoginOk(false);
       }
     } catch (error) {
       console.log(error);
       setErrore("Impossibile Conttare il server! Riprova più tardi!");
-      setLoginOk(false);
     }
     setLoading(false);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    dispatch(logout());
     setSeiLoggato(false);
     toast.info("Logout effettuato");
   };
@@ -92,7 +95,9 @@ function MyNavbar() {
                 <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none p-2" to={"/"}>
                   Cerca l'auto
                 </Link>
-                <button className="btn-nav border-0 fs-4 fw-medium">Vendi la tua auto</button>
+                <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none p-2" to={"/VendiLaTuaAuto"}>
+                  Vendi la tua auto
+                </Link>
                 {seiLoggato && (
                   <Link className="btn-nav border-0 fs-4 fw-medium text-decoration-none p-2" to={"/MieiAnnunci"}>
                     I miei annunci

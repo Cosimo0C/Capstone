@@ -2,7 +2,7 @@ import "./Style/_ComeFunziona.scss";
 import logo from "../../assets/icona.png";
 function ComeFunziona() {
   return (
-    <div className="d-flex align-items-center justify-content-between">
+    <div className="d-flex align-items-center justify-content-between m-4">
       <img src={logo} className="logo" alt="logo" />
       <div className="text-white agata w-75">
         <h1 className="text-light">CarsBuy cos'è?</h1>
