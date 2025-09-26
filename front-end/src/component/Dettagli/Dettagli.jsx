@@ -35,7 +35,7 @@ function Dettagli() {
               <FaRegCalendarAlt />
             </div>
             <div>
-              {annuncio.auto.chilometri}
+              {new Intl.NumberFormat("it-IT").format(annuncio.auto.chilometri)}
               <LiaTachometerAltSolid />
             </div>
             <div>
@@ -61,7 +61,7 @@ function Dettagli() {
             <h5>Potenza: {annuncio.auto.potenza}</h5>
             <h5>Cambio: {annuncio.auto.cambio}</h5>
             <h5>Carburante: {annuncio.auto.carburante}</h5>
-            <h5>Chilometri: {annuncio.auto.chilometri}</h5>
+            <h5>Chilometri: {new Intl.NumberFormat("it-IT").format(annuncio.auto.chilometri)}</h5>
           </div>
         </div>
       </div>
