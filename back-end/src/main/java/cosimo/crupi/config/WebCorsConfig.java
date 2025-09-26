@@ -14,7 +14,9 @@ public class WebCorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // tutti gli endpoint
                         .allowedOrigins("http://localhost:5173") // front-end React
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS"); // metodi permessi
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // metodi permessi
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
 
         };

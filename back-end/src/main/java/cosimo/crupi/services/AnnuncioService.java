@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
@@ -38,6 +39,7 @@ public class AnnuncioService {
 
         Annuncio annuncio = new Annuncio(payload.titolo(), payload.descrizione(), payload.prezzo(), LocalDate.now(), auto, venditore);
 
+        annuncio.setImgAuto(new ArrayList<>());
         if (payload.imgAuto() != null){
             annuncio.getImgAuto().addAll(payload.imgAuto());
         }

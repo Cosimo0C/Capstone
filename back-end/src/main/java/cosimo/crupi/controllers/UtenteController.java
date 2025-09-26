@@ -10,6 +10,7 @@ import cosimo.crupi.payloads.UtenteDTO;
 import cosimo.crupi.payloads.UtenteRespDTO;
 import cosimo.crupi.services.AnnuncioService;
 import cosimo.crupi.services.UtenteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -142,7 +143,7 @@ public class UtenteController {
 
     @PostMapping("/me/creoAnnuncio")
     @ResponseStatus(HttpStatus.CREATED)
-    public AnnuncioDTO createAnnucnio(@RequestBody  @Validated AnnuncioDTO payload,
+    public AnnuncioDTO createAnnucnio(@RequestBody  @Valid AnnuncioDTO payload,
                                       @AuthenticationPrincipal Utente currentAuth){
         Annuncio a = this.annuncioService.saveAnnuncio(payload, currentAuth.getId());
         return mapADTO(a);
