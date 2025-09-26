@@ -9,7 +9,7 @@ function DeleteAnnuncio({ annuncioId, onDelete }) {
   const { token } = useSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
   const [errore, setErrore] = useState("");
-  console.log(annuncioId);
+
   const deleteAnnuncio = async () => {
     try {
       const resp = await fetch(`http://localhost:8090/utente/me/eliminoAnnuncio/${annuncioId}`, {
