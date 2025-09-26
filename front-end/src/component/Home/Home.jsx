@@ -33,8 +33,8 @@ const Home = () => {
 
       {annunci.length > 0 ? (
         <div className="row justify-content-center">
-          {annunci.map((annuncio, i) => (
-            <div key={i} className="col-11 col-sm-11 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex justify-content-center">
+          {annunci.map((annuncio) => (
+            <div key={annuncio.id} className="col-11 col-sm-11 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex justify-content-center">
               <CarCard annuncio={annuncio} />
             </div>
           ))}

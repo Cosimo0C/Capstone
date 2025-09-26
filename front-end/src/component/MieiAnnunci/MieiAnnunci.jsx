@@ -1,26 +1,88 @@
 import "./Style/_mieiAnnunci.scss";
-import logo from "../../assets/icona.png";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Button, Carousel } from "react-bootstrap";
+import { BsDot } from "react-icons/bs";
 function MieiAnnunci() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { isLoggedIn, token } = useSelector((state) => state.auth);
+  const [dati, setDati] = useState({ content: [] });
+
+  const getMieiAnnunci = async () => {
+    try {
+      setIsLoading(true);
+      const resp = await fetch("http://localhost:8090/utente/me/annunci", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (resp.ok) {
+        const json = await resp.json();
+        setDati(json);
+      } else {
+        toast.error("Errore nella fetch!");
+      }
+    } catch (error) {
+      toast.error("Errore di connessione al server!");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getMieiAnnunci();
+    } else {
+      toast.warn("Non puoi accedere se non effettui il login");
+    }
+  }, []);
+
   return (
-    <div className="d-flex align-items-center justify-content-between">
-      <img src={logo} className="logo" alt="logo" />
-      <div className="text-white agata w-75">
-        <h1 className="text-light">CarsBuy cos'è?</h1>
-        <p className="fs-4">
-          Il tuo viaggio inizia qui — tra persone come te. Benvenuto nel marketplace dove le auto usate non sono solo veicoli, ma storie che continuano. Qui
-          troverai concessionarie e persone che vendono e acquistano con trasparenza, semplicità e fiducia. Che tu stia cercando la tua prima auto, un modello
-          più spazioso per la famiglia, o semplicemente un affare intelligente, questo è il posto giusto. Ogni annuncio è pubblicato direttamente dagli utenti,
-          con foto autentiche, descrizioni dettagliate e la possibilità di contattare il venditore in modo diretto. Tu scegli, tu decidi. Naviga tra centinaia
-          di offerte, confronta, fai domande e trova l'auto che davvero ti interessa.
-        </p>
-        <h3 className="text-light">E se vuoi vendere la tua?</h3>
-        <p>
-          Bastano pochi clic per pubblicare l'annuncio e raggiungere migliaia di potenziali acquirenti. Una community che si muove. Qui ogni persona che
-          visiterà il marketplace sarà libera di scegliere qualsiasi cosa inerente all'auto.
-        </p>
-        <h2 className="text-light">Siamo felici di accorgliela da</h2>
-        <h1 className="text-light">CARSBUY</h1>
-      </div>
+    <div className="m-2">
+      {dati.content.length > 0 ? (
+        <div className="row justify-content-center">
+          {dati.content.map((annuncio) => (
+            <div key={annuncio.id} className="col-11 col-sm-11 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex justify-content-center">
+              <div className="bg-secondary rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
+                <Carousel interval={null} slide={false} className="mt-3" controls={null}>
+                  {annuncio.imgAuto.map((img, j) => (
+                    <Carousel.Item key={j}>
+                      <img src={img} alt={`immagine auto ${j}`} id="img-auto" />
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
+                <div className="d-flex flex-column mt-2 w-75">
+                  <div className="d-flex justify-content-between fs-3 text-light">
+                    <div>{annuncio.titolo}</div>
+                    <div>{new Intl.NumberFormat("it-IT").format(annuncio.prezzo)} €</div>
+                  </div>
+                  <div className="text-success">
+                    <div className="d-flex align-items-center">
+                      <div>{annuncio.auto.anno}</div>
+                      <BsDot />
+                      <div>{annuncio.auto.carburante}</div>
+                      <BsDot />
+                      <div>{new Intl.NumberFormat("it-IT").format(annuncio.auto.chilometri)} km</div>
+                    </div>
+                    <div>{annuncio.auto.cambio}</div>
+                  </div>
+                </div>
+                <div className="d-flex justify-content-between align-items-end w-75 m-2">
+                  <Button variant="secondary" className="text-light fs-5">
+                    Visualizza auto
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        !isLoading && <p className="text-center text-light">Non hai ancora pubblicato nessun annuncio</p>
+      )}
     </div>
   );
 }
