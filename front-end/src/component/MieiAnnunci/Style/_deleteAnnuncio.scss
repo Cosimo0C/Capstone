@@ -1,0 +1,12 @@
+@import "../../../styles/partials/variables";
+.btn-delete {
+  color: $alert;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  &:hover {
+    background-color: $success;
+  }
+  :active {
+    transform: translateY(5px) scale(1);
+  }
+}

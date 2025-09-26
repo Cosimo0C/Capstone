@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Carousel } from "react-bootstrap";
 import { BsDot } from "react-icons/bs";
+import DeleteAnnuncio from "./DeleteAnnuncio";
 function MieiAnnunci() {
   const [isLoading, setIsLoading] = useState(false);
   const { isLoggedIn, token } = useSelector((state) => state.auth);
@@ -75,6 +76,7 @@ function MieiAnnunci() {
                   <Button variant="secondary" className="text-light fs-5">
                     Visualizza auto
                   </Button>
+                  <DeleteAnnuncio annuncioId={annuncio.id} onDelete={getMieiAnnunci} />
                 </div>
               </div>
             </div>
