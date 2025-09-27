@@ -15,10 +15,16 @@ function Dettagli() {
   }
   return (
     <>
-      <Carousel interval={null} slide={false} className="mt-3" controls={null}>
+      <Carousel interval={null} slide={false} className="mt-3" controls={null} style={{ maxWidth: "700px", margin: "0 auto" }}>
         {annuncio.imgAuto.map((img, j) => (
           <Carousel.Item key={j}>
-            <img src={img} alt={`immagine auto ${j}`} id="img-auto" className="border border-2 bg-white" />
+            <img
+              src={img}
+              alt={`immagine auto ${j}`}
+              id="img-auto"
+              className="border border-2 bg-white img-fluid mx-auto d-block object-fit-contain"
+              style={{ maxWidth: "700px", width: "100%", height: "400px" }}
+            />
           </Carousel.Item>
         ))}
       </Carousel>
