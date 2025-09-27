@@ -8,6 +8,7 @@ import { MdDeleteForever } from "react-icons/md";
 function ModAnnuncio() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [errore, setErrore] = useState("");
   const { token } = useSelector((state) => state.auth);
 
   const { annuncio } = location.state || {};
@@ -54,6 +55,22 @@ function ModAnnuncio() {
   const modifica = async (e) => {
     e.preventDefault();
 
+    if (
+      !bodyMod.titolo ||
+      !bodyMod.descrizione ||
+      !bodyMod.prezzo ||
+      !bodyMod.auto.marca ||
+      !bodyMod.auto.modello ||
+      !bodyMod.auto.anno ||
+      !bodyMod.auto.potenza ||
+      !bodyMod.auto.cambio ||
+      !bodyMod.auto.carburante ||
+      !bodyMod.auto.chilometri
+    ) {
+      toast.error("Compila tutti i campi obbligatori!");
+      return;
+    }
+
     const body = {
       titolo: bodyMod.titolo,
       descrizione: bodyMod.descrizione,
@@ -69,10 +86,10 @@ function ModAnnuncio() {
       },
       imgAuto: imgAuto.filter((url) => url.trim() !== ""),
     };
-
-    console.log(body);
+    console.log("ID:", annuncio.id);
+    console.log("Body:", body);
     try {
-      const resp = await fetch(`http://localhost:8090/utente/me/modificaAnnuncio/${annuncio.id}`, {
+      const resp = await fetch(`http://localhost:8090/utente/me/modAnnuncio/${annuncio.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -81,15 +98,24 @@ function ModAnnuncio() {
         body: JSON.stringify(body),
       });
 
+      console.log(body);
+      const dati = await resp.json();
       if (resp.ok) {
         toast.success("Annuncio modificato con successo!");
         navigate("/MieiAnnunci");
+      } else if (dati.errorsList && dati.errorsList.length > 0) {
+        dati.errorsList.forEach((err) => toast.error(err));
+        setErrore(dati.errorsList.join(", "));
+      } else if (dati.msg) {
+        toast.error(dati.msg);
+        setErrore(dati.msg);
       } else {
         toast.error("Errore nella modifica dell'annuncio");
+        setErrore("Errore nella modifica dell'annuncio");
       }
     } catch (err) {
       console.error(err);
-      toast.error("Errore di connessione al server!");
+      toast.error("Errore di connessione al server");
     }
   };
 
