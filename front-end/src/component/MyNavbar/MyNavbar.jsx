@@ -24,7 +24,19 @@ function MyNavbar() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) setSeiLoggato(true);
+    const loginTime = localStorage.getItem("loginTime");
+    if (token && loginTime) {
+      const now = Date.now();
+      if (now - loginTime > 86400000) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("loginTime");
+        dispatch(logout());
+        setSeiLoggato(false);
+        toast.info("Sessione scaduta, effettua di nuovo il login.");
+      } else {
+        setSeiLoggato(true);
+      }
+    }
   }, []);
 
   const handleChiudi = () => {
@@ -58,6 +70,7 @@ function MyNavbar() {
       if (resp.ok) {
         toast.success("Login effettuato con successo!");
         localStorage.setItem("token", dati.accT);
+        localStorage.setItem("loginTime", Date.now());
         setSeiLoggato(true);
         dispatch(loginSuccess(dati.accT));
         handleChiudi();
@@ -74,6 +87,7 @@ function MyNavbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("loginTime");
     dispatch(logout());
     setSeiLoggato(false);
     toast.info("Logout effettuato");
