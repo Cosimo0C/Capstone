@@ -195,7 +195,9 @@ public class UtenteController {
                         annuncio.getAuto().getCarburante(),
                         annuncio.getAuto().getChilometri()
                 ),
-                annuncio.getImgAuto()
+                annuncio.getImgAuto(),
+                annuncio.getDataPubblicazione(),
+                annuncio.getUtente().getNumCellulare()
         );
     }
 }

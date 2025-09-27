@@ -14,7 +14,6 @@ const CarCard = ({ annuncio, preferiti }) => {
   const annunciPref = useSelector((state) => state.pref.preferiti);
 
   const handlePref = (annuncio) => {
-    console.log(annunciPref);
     if (annunciPref.some((a) => a.id == annuncio.id)) {
       toast.warn("è già nei preferiti");
     } else {

@@ -62,11 +62,7 @@ function MyNavbar() {
         body: JSON.stringify({ email, password }),
       });
       const dati = await resp.json();
-      {
-        console.log(email);
-        console.log(password);
-        console.log(dati);
-      }
+
       if (resp.ok) {
         toast.success("Login effettuato con successo!");
         localStorage.setItem("token", dati.accT);

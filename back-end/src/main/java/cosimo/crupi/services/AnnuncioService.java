@@ -38,7 +38,6 @@ public class AnnuncioService {
         Auto auto = new Auto(payload.auto().marca(), payload.auto().modello(), payload.auto().anno(), payload.auto().potenza(), payload.auto().cambio(), payload.auto().carburante(), payload.auto().chilometri());
 
         Annuncio annuncio = new Annuncio(payload.titolo(), payload.descrizione(), payload.prezzo(), LocalDate.now(), auto, venditore);
-
         annuncio.setImgAuto(new ArrayList<>());
         if (payload.imgAuto() != null){
             annuncio.getImgAuto().addAll(payload.imgAuto());

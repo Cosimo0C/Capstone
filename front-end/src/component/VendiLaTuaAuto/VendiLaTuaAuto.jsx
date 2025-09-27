@@ -166,6 +166,7 @@ function VendiLaTuaAuto() {
             + Aggiungi immagine
           </Button>
         </Form.Group>
+        {errore && <div className="alert alert-danger mt-3">{errore}</div>}
 
         {isLoading ? (
           <Spinner animation="border" variant="success" className="mt-3" />

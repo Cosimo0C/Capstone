@@ -86,8 +86,7 @@ function ModAnnuncio() {
       },
       imgAuto: imgAuto.filter((url) => url.trim() !== ""),
     };
-    console.log("ID:", annuncio.id);
-    console.log("Body:", body);
+
     try {
       const resp = await fetch(`http://localhost:8090/utente/me/modAnnuncio/${annuncio.id}`, {
         method: "PUT",
@@ -98,7 +97,6 @@ function ModAnnuncio() {
         body: JSON.stringify(body),
       });
 
-      console.log(body);
       const dati = await resp.json();
       if (resp.ok) {
         toast.success("Annuncio modificato con successo!");
@@ -203,6 +201,7 @@ function ModAnnuncio() {
             + Aggiungi immagine
           </Button>
         </Form.Group>
+        {errore && <div className="alert alert-danger mt-3">{errore}</div>}
 
         <Button variant="success" type="submit">
           Salva Modifiche

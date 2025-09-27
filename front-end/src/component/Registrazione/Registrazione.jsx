@@ -34,8 +34,6 @@ function Registrazione() {
       return;
     }
 
-    console.log(body);
-
     try {
       const resp = await fetch("http://localhost:8090/auth/registrazione", {
         method: "POST",
@@ -43,8 +41,8 @@ function Registrazione() {
         body: JSON.stringify(body),
       });
 
+      const dati = await resp.json();
       if (resp.ok) {
-        const dati = await resp.json();
         toast.success("Registrazione avvenuta con successo!");
         e.target.reset();
         setTimeout(() => handleOk(), 2000);
@@ -60,7 +58,7 @@ function Registrazione() {
       }
     } catch (error) {
       toast.error(error.message);
-      setErrore("Impossibile conttatare il server! Riprova più tardi!");
+      setErrore("Impossibile contattare il server! Riprova più tardi!");
     } finally {
       setIsLoading(false);
     }
@@ -90,7 +88,7 @@ function Registrazione() {
         <Form.Group controlId="formBasicPassword">
           <Form.Label className="text-light mt-2 fs-4">Password</Form.Label>
           <div className="d-flex">
-            <Form.Control name="password" type={mostraPass ? "text" : "password"} placeholder="Inserisci la tua email" required />
+            <Form.Control name="password" type={mostraPass ? "text" : "password"} placeholder="Inserisci la tua password" required />
             <Button variant="outline-light" className="border-0" onClick={() => setMostraPass(!mostraPass)} type="button">
               {mostraPass ? <FaEyeSlash /> : <FaEye />}
             </Button>
@@ -104,25 +102,26 @@ function Registrazione() {
             <Form.Control name="numCellulare" type="text" required />
             <Form.Text className="text-success">Il numero dovrà essere attivo e alla portata perchè lì ti contatteranno i possibili acquirenti.</Form.Text>
           </InputGroup>
+        </Form.Group>
 
-          <Form.Group className="mt-2">
-            <Form.Label className="text-light d-block">Inserisci la tua data di nascita</Form.Label>
-            <input type="date" className="w-25" name="dataNascita" />
-          </Form.Group>
+        <Form.Group className="mt-2">
+          <Form.Label className="text-light d-block">Inserisci la tua data di nascita</Form.Label>
+          <input type="date" className="w-25" name="dataNascita" required />
         </Form.Group>
 
         <Form.Select name="tipo" aria-label="Default select example" className="mt-4" required>
-          <option>Scegli il che tipo di utente sei</option>
+          <option value="">Scegli che tipo di utente sei</option>
           <option value="PRIVATO">PRIVATO</option>
           <option value="RIVENDITORE">RIVENDITORE</option>
         </Form.Select>
+        <Form.Check className="text-success mt-3" label="Consenso nel mostrare il numero di cellulare per essere contattato" required />
         {errore && <div className="alert alert-danger mt-3">{errore}</div>}
 
         {isLoading ? (
           <Spinner animation="border" variant="success" />
         ) : (
           <Button type="submit" className="bg-light mt-4">
-            {isLoading ? "Registrazione in corso..." : "Regsistrati"}
+            Registrati
           </Button>
         )}
       </Form>

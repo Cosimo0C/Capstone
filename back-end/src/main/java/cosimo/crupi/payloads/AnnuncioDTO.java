@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +18,8 @@ public record AnnuncioDTO(
         int prezzo,
         @NotNull(message = "Inserire l'auto è la cosa più importante!")
         AutoDTO auto,
-        List<String> imgAuto
+        List<String> imgAuto,
+        LocalDate dataPublicazione,
+        String numeroProprietario
 ) {
 }
