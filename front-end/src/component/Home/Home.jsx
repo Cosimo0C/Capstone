@@ -9,11 +9,18 @@ const Home = () => {
     try {
       setIsLoading(true);
       const resp = await fetch("http://localhost:8090/utente/annunci");
+      const dati = await resp.json();
       if (resp.ok) {
-        const dati = await resp.json();
         setAnnunci(dati.content);
+      } else if (dati.errorsList && dati.errorsList.length > 0) {
+        dati.errorsList.forEach((err) => toast.error(err));
+        setErrore(dati.errorsList.join(", "));
+      } else if (dati.msg) {
+        toast.error(dati.msg);
+        setErrore(dati.msg);
       } else {
-        alert("Errore nella fetch");
+        toast.error("Errore nel caricamento degli annunci!");
+        setErrore("Errore nel caricamento degli annunci!");
       }
     } catch (error) {
       console.log(error);

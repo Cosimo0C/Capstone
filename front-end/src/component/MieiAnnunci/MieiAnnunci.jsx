@@ -22,12 +22,19 @@ function MieiAnnunci() {
           Authorization: `Bearer ${token}`,
         },
       });
+      const json = await resp.json();
 
       if (resp.ok) {
-        const json = await resp.json();
         setDati(json);
+      } else if (json.errorsList && json.errorsList.length > 0) {
+        json.errorsList.forEach((err) => toast.error(err));
+        setErrore(json.errorsList.join(", "));
+      } else if (json.msg) {
+        toast.error(json.msg);
+        setErrore(json.msg);
       } else {
-        toast.error("Errore nella fetch!");
+        toast.error("Errore nel modificare l'annuncio!");
+        setErrore("Errore nel modificare l'annuncio!");
       }
     } catch (error) {
       toast.error("Errore di connessione al server!");

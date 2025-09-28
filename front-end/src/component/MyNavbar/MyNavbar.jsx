@@ -70,9 +70,15 @@ function MyNavbar() {
         setSeiLoggato(true);
         dispatch(loginSuccess(dati.accT));
         handleChiudi();
+      } else if (dati.errorsList && dati.errorsList.length > 0) {
+        dati.errorsList.forEach((err) => toast.error(err));
+        setErrore(dati.errorsList.join(", "));
+      } else if (dati.msg) {
+        toast.error(dati.msg);
+        setErrore(dati.msg);
       } else {
-        toast.error("Errore login!");
-        setErrore(dati.messagge || "Errore login");
+        toast.error("Errore nel login!");
+        setErrore("Errore nel login!");
       }
     } catch (error) {
       console.log(error);

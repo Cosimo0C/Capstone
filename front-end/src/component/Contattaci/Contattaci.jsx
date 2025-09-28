@@ -20,7 +20,7 @@ function Contattaci() {
         <Card className="bg-primary border-2 border-success d-flex align-items-center w-50 mt-3">
           <Card.Title className="text-light mt-3">Compila il modulo per inviarci un messaggio</Card.Title>
           <Card.Body className="text-success">Mandaci la tua richiesta, risponderemo al più presto con tutte le informazioni di cui hai bisogno</Card.Body>
-          <p className="fs-3 text-success">carsbuystaf@gmail.com</p>
+          <p className="fs-3 text-success">carsbuystaff@gmail.com</p>
         </Card>
       </div>
     </div>
