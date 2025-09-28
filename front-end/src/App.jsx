@@ -4,7 +4,7 @@ import MyNavbar from "./component/MyNavbar/MyNavbar.jsx";
 import ComeFunziona from "./component/ComeFunziona/ComeFunziona.jsx";
 import MyFooter from "./component/MyFooter/MyFooter.jsx";
 import Home from "./component/Home/Home.jsx";
-import "./styles/main.scss";
+import "./Styles/main.scss";
 import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
 import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
 import Preferiti from "./component/Preferiti/Preferiti.jsx";
