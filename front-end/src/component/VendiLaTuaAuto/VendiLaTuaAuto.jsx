@@ -95,12 +95,12 @@ function VendiLaTuaAuto() {
           <Form.Control name="titolo" placeholder="Inserisci il titolo dell'annuncio" required />
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="mt-3">
           <Form.Label className="text-light fs-3">Descrizione</Form.Label>
           <Form.Control as="textarea" name="descrizione" rows={3} placeholder="Inserisci la descrizione" required />
         </Form.Group>
 
-        <Form.Group>
+        <Form.Group className="mt-3">
           <Form.Label className="text-light fs-3">Prezzo</Form.Label>
           <Form.Control type="number" name="prezzo" min="0" placeholder="Inserisci il prezzo" required />
         </Form.Group>
