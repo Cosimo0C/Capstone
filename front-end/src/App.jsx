@@ -8,7 +8,7 @@ import "./Styles/main.scss";
 import ChiSiamo from "./component/ChiSiamo/ChiSiamo.jsx";
 import MieiAnnunci from "./component/MieiAnnunci/MieiAnnunci.jsx";
 import Preferiti from "./component/Preferiti/Preferiti.jsx";
-import Registrazione from "./component/Registrazione/REgistrazione.jsx";
+import Registrazione from "./component/Registrazione/Registrazione.jsx";
 import Contattaci from "./component/Contattaci/Contattaci.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
