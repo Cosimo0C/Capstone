@@ -4,6 +4,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import "./Style/_deleteAnnuncio.scss";
+import { apiUrl } from "../../utils/api";
 
 function DeleteAnnuncio({ annuncioId, onDelete }) {
   const { token } = useSelector((state) => state.auth);

@@ -2,6 +2,7 @@ import "./Style/_mieiAnnunci.scss";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { apiUrl } from "../../utils/api";
 import DeleteAnnuncio from "./DeleteAnnuncio";
 import CarCard from "../CarCard/CardCard";
 import { Link } from "react-router-dom";

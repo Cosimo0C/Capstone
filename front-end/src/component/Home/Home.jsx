@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../../utils/api";
 import CarCard from "../CarCard/CardCard";
 
 const Home = () => {

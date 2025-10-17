@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Form, Button } from "react-bootstrap";
 import { MdDeleteForever } from "react-icons/md";
+import { apiUrl } from "../../utils/api";
 
 function ModAnnuncio() {
   const location = useLocation();
