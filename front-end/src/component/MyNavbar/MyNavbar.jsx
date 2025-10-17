@@ -56,7 +56,7 @@ function MyNavbar() {
     const password = e.target.password.value;
 
     try {
-      const resp = await fetch("http://localhost:8090/auth/login", {
+      const resp = await fetch(apiUrl("/auth/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

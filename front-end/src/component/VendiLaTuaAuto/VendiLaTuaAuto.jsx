@@ -3,6 +3,7 @@ import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { MdDeleteForever } from "react-icons/md";
+import { apiUrl } from "../../utils/api";
 
 function VendiLaTuaAuto() {
   const { isLoggedIn, token } = useSelector((state) => state.auth);
@@ -45,7 +46,7 @@ function VendiLaTuaAuto() {
     };
 
     try {
-      const resp = await fetch("http://localhost:8090/utente/me/creoAnnuncio", {
+      const resp = await fetch(apiUrl("/utente/me/creoAnnuncio"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

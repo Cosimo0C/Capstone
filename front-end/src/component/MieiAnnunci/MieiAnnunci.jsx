@@ -15,7 +15,7 @@ function MieiAnnunci() {
   const getMieiAnnunci = async () => {
     try {
       setIsLoading(true);
-      const resp = await fetch("http://localhost:8090/utente/me/annunci", {
+      const resp = await fetch(apiUrl("/utente/me/annunci"), {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

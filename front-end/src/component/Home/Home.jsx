@@ -8,7 +8,7 @@ const Home = () => {
   const getAnnunci = async () => {
     try {
       setIsLoading(true);
-      const resp = await fetch("http://localhost:8090/utente/annunci");
+      const resp = await fetch(apiUrl("/utente/annunci"));
       const dati = await resp.json();
       if (resp.ok) {
         setAnnunci(dati.content);

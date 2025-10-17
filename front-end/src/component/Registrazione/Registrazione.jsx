@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiUrl } from "../../utils/api";
 import { Button, Container, Form, InputGroup, Spinner } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +36,7 @@ function Registrazione() {
     }
 
     try {
-      const resp = await fetch("http://localhost:8090/auth/registrazione", {
+      const resp = await fetch(apiUrl("/auth/registrazione"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
