@@ -13,7 +13,7 @@ public class WebCorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // tutti gli endpoint
-                        .allowedOrigins("http://localhost:5173") // front-end React
+                        .allowedOrigins("http://localhost:5173", "https://capstone-kkz3.vercel.app/") // front-end React
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // metodi permessi
                         .allowedHeaders("*")
                         .allowCredentials(true);
