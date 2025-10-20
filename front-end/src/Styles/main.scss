@@ -52,3 +52,13 @@ body {
     box-sizing: border-box !important;
   }
 }
+
+/* Ensure the container added via className="toast" is constrained */
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto !important;
+  max-width: 90vw !important;
+  z-index: 9999 !important;
+}
