@@ -1,4 +1,4 @@
-name: Build and deploy front-end Vite app to GitHub Pages
+name: Build and deploy Vite app to GitHub Pages
 
 on:
   push:
@@ -8,9 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./front-end
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,4 +27,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./front-end/dist
+          publish_dir: ./dist
