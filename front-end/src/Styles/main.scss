@@ -19,3 +19,36 @@ body {
 .page-content {
   flex: 1;
 }
+
+/* react-toastify: ensure toast container and toasts are visible and centered on mobile */
+.Toastify__toast-container--top-center,
+.Toastify__toast-container {
+  left: auto;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .Toastify__toast-container--top-center,
+  .Toastify__toast-container {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    top: 10% !important;
+    width: auto !important;
+    max-width: 90vw !important;
+    padding: 0 !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Toastify__toast {
+    max-width: 320px !important;
+    width: auto !important;
+    font-size: 0.95rem !important;
+    padding: 0.45rem 0.6rem !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+  }
+}
