@@ -5,6 +5,7 @@ import { FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { AiFillAndroid } from "react-icons/ai";
 import { FaApple } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function MyFooter() {
   return (
     <div className="text-success pt-5" id="fot">
