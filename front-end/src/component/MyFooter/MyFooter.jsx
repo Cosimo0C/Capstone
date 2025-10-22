@@ -15,13 +15,19 @@ function MyFooter() {
           <ul className="btn text-success">
             <li>Garanzia</li>
             <li>
-              <Link to={"/ComeFunziona"}>Come funziona</Link>
+              <Link className="btn text-success" to={"/ComeFunziona"}>
+                Come funziona
+              </Link>
             </li>
             <li>
-              <Link to={"/ChiSiamo"}>Chi siamo</Link>
+              <Link className="btn text-success" to={"/ChiSiamo"}>
+                Chi siamo
+              </Link>
             </li>
             <li>
-              <Link to={"/Contattaci"}></Link>Contattaci
+              <Link className="btn text-success" to={"/Contattaci"}>
+                Contattaci
+              </Link>
             </li>
           </ul>
         </div>
