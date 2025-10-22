@@ -13,9 +13,15 @@ function MyFooter() {
           <h1>CarsBuy</h1>
           <ul className="btn text-success">
             <li>Garanzia</li>
-            <li>Come funziona</li>
-            <li>Chi siamo</li>
-            <li>Contattaci</li>
+            <li>
+              <Link to={"/ComeFunziona"}>Come funziona</Link>
+            </li>
+            <li>
+              <Link to={"/ChiSiamo"}>Chi siamo</Link>
+            </li>
+            <li>
+              <Link to={"/Contattaci"}></Link>Contattaci
+            </li>
           </ul>
         </div>
         <div>
