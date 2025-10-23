@@ -6,8 +6,9 @@ function addProtocolIfMissing(url) {
 }
 
 // legge la variabile definita in .env come VITE_API_HOST
-const envVite = import.meta.env.VITE_API_HOST;
-const raw = envVite || "http://localhost:8090";
+const envHost = import.meta.env.VITE_API_HOST;
+const envLocal = import.meta.env.VITE_API_LOCAL;
+const raw = envHost || envLocal;
 const BASE_URL = addProtocolIfMissing(raw);
 
 export function apiUrl(path) {
