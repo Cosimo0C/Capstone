@@ -47,7 +47,7 @@ const CarCard = ({ annuncio, preferiti }) => {
           <div>{annuncio.auto.cambio}</div>
         </div>
       </div>
-      <div className="d-flex justify-content-between align-items-end w-75 m-2">
+      <div className="d-flex justify-content-between align-items-end w-75 m-2 mt-auto">
         {!preferiti && (
           <Button variant="secondary" onClick={() => handlePref(annuncio)}>
             {" "}
