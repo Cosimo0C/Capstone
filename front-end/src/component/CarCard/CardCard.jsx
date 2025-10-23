@@ -32,7 +32,7 @@ const CarCard = ({ annuncio, preferiti }) => {
         ))}
       </Carousel>
       <div className="d-flex flex-column mt-2 w-75">
-        <div className="d-flex justify-content-between fs-3 text-light">
+        <div className="d-flex justify-content-between fs-2 text-light">
           <div>{annuncio.titolo}</div>
           <div>{new Intl.NumberFormat("it-IT").format(annuncio.prezzo)} €</div>
         </div>
