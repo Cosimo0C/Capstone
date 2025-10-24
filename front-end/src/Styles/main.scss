@@ -20,12 +20,15 @@ body {
   flex: 1;
 }
 
-// /* react-toastify: ensure toast container and toasts are visible and centered on mobile */
-// .Toastify__toast-container--top-center,
-// .Toastify__toast-container {
-//   left: auto;
-//   right: 0;
-// }
+/* Posizione standard per desktop */
+.Toastify__toast-container--top-center,
+.Toastify__toast-container {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  top: 1rem;
+  z-index: 9999;
+}
 
 @media (max-width: 768px) {
   .Toastify__toast-container--top-center,
