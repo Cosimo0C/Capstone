@@ -23,11 +23,11 @@ body {
 /* Posizione standard per desktop */
 .Toastify__toast-container--top-center,
 .Toastify__toast-container {
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
-  top: 1rem;
-  z-index: 9999;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  top: 1rem !important;
+  z-index: 9999 !important;
 }
 
 @media (max-width: 768px) {
