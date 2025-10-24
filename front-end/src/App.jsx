@@ -22,7 +22,7 @@ function App() {
       <BrowserRouter>
         <MyNavbar />
         <div className="page-content">
-          <ToastContainer position="top-center" className="toast" autoClose={3000} />
+          <ToastContainer position="top-center" autoClose={3000} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ComeFunziona" element={<ComeFunziona />} />

@@ -19,49 +19,21 @@ body {
 .page-content {
   flex: 1;
 }
-
-/* Posizione standard per desktop */
-.Toastify__toast-container--top-center,
-.Toastify__toast-container {
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%) !important;
-  top: 1rem !important;
-  z-index: 9999 !important;
-}
-
+/* Toast da mobile */
 @media (max-width: 768px) {
-  .Toastify__toast-container--top-center,
-  .Toastify__toast-container {
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
+  .Toastify__toast-container--top-center {
     top: 10% !important;
-    width: auto !important;
-    max-width: 90vw !important;
+    max-width: 90vw !important; // la larghezza massima dell’intero contenitore
     padding: 0 !important;
-    z-index: 9999 !important;
     display: flex !important;
     flex-direction: column;
     align-items: center;
   }
 
   .Toastify__toast {
-    max-width: 320px !important;
-    width: auto !important;
-    font-size: 0.95rem !important;
+    max-width: 300px !important; // dimensione più contenuta solo su mobile
+    width: 90% !important; // si adatta meglio agli schermi piccoli
+    font-size: 0.9rem !important;
     padding: 0.45rem 0.6rem !important;
-    border-radius: 6px !important;
-    box-sizing: border-box !important;
   }
-}
-
-/* Ensure the container added via className="toast" is constrained */
-.toast {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto !important;
-  max-width: 90vw !important;
-  z-index: 9999 !important;
 }
