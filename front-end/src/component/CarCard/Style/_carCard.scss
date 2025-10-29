@@ -8,6 +8,9 @@
 .h-b {
   display: inline-block;
   transition: transform 0.1s ease;
+  &:hover {
+    color: lighten($color: $primary, $amount: 20) !important;
+  }
 }
 
 .h-b :active {
@@ -17,11 +20,17 @@
   padding: 5px;
   border-radius: 7%;
   &:hover {
-    background-color: (lighten($secondary, $amount: 10));
+    background-color: lighten($color: $primary, $amount: 20) !important;
   }
   &:active {
     transform: translateY(1px) scale(0.9);
   }
+}
+.btn-h-b {
+  background-color: darken($color: $primary, $amount: 10) !important;
+}
+.bck {
+  background-color: darken($color: $primary, $amount: 10) !important;
 }
 .carousel-indicators {
   color: $light !important;

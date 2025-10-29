@@ -23,7 +23,7 @@ const CarCard = ({ annuncio, preferiti }) => {
   };
 
   return (
-    <div className="bg-secondary rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
+    <div className="bck rounded-4 border border-success d-flex flex-column align-items-center pt-2 w-100">
       <Carousel interval={null} slide={false} className="mt-3" controls={null}>
         {annuncio.imgAuto.map((img, j) => (
           <Carousel.Item key={j}>
@@ -49,7 +49,7 @@ const CarCard = ({ annuncio, preferiti }) => {
       </div>
       <div className="d-flex justify-content-between align-items-end w-75 m-2 mt-auto">
         {!preferiti && (
-          <Button variant="secondary" onClick={() => handlePref(annuncio)}>
+          <Button variant="secondary" className="btn-h-b border-0" onClick={() => handlePref(annuncio)}>
             {" "}
             <FaHeart className="h-b fs-2" />
           </Button>

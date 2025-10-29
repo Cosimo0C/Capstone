@@ -1,10 +1,10 @@
 @import "../../../Styles/partials/variables";
 .btn-delete {
-  color: $alert;
+  color: red !important;
   display: inline-block;
   transition: transform 0.3s ease;
   &:hover {
-    background-color: $success;
+    background-color: lighten($color: $primary, $amount: 20) !important;
   }
   :active {
     transform: translateY(5px) scale(1);

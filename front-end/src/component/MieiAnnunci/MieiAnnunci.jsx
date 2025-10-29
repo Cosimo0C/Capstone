@@ -59,10 +59,10 @@ function MieiAnnunci() {
           {dati.content.map((annuncio) => (
             <div key={annuncio.id} className="col-11 col-sm-11 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex flex-column justify-content-center">
               <CarCard annuncio={annuncio} />
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around mt-3">
                 <Link to={"/ModAnnuncio"} state={{ annuncio }} className="d-flex justify-content-center text-decoration-none">
                   {" "}
-                  <Button variant="light" className="text-success">
+                  <Button variant="light" className="text-white">
                     Modifica Annunncio
                   </Button>
                 </Link>

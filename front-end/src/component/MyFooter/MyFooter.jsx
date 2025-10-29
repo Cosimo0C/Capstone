@@ -12,8 +12,7 @@ function MyFooter() {
       <div className="d-flex justify-content-around">
         <div>
           <h1>CarsBuy</h1>
-          <ul className="btn text-success">
-            <li>Garanzia</li>
+          <ul className="btn text-success d-flex flex-column align-items-start">
             <li>
               <Link className="btn text-success" to={"/ComeFunziona"}>
                 Come funziona
@@ -33,19 +32,22 @@ function MyFooter() {
         </div>
         <div>
           <h2>Sempre con te</h2>
-          <ul className="btn text-success">
-            <li>
+          <ul className="btn text-success d-flex flex-column align-items-start">
+            <li className="mt-3">
               {" "}
               <AiFillAndroid /> CarsBuy per Android
             </li>
-            <li>
+            <li className="mt-3">
               {" "}
               <FaApple /> CarsBuy per iOS
             </li>
-            <li>
+            <li className="mt-3">
               <div>
                 {" "}
-                <FaSquareFacebook /> <FaSquareInstagram /> <FaYoutube /> <FaLinkedin />
+                <FaSquareFacebook className="me-2" />
+                <FaSquareInstagram className="me-2" />
+                <FaYoutube className="me-2" />
+                <FaLinkedin />
               </div>
             </li>
           </ul>
