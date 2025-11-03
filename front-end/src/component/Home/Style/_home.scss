@@ -1,1 +1,30 @@
 @import "../../../Styles/partials/variables";
+
+.spin {
+  right: 13%;
+  top: 33%;
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+@media (max-width: 1200px) {
+  .spin {
+    top: 32.2%;
+    right: 12%;
+  }
+}
+
+@media (max-width: 768px) {
+  .spin {
+    top: 31%;
+    right: 12%;
+  }
+}
+
+@media (max-width: 576px) {
+  .spin {
+    top: 31%;
+    right: 10%;
+  }
+}

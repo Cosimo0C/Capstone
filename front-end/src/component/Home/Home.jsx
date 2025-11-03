@@ -1,3 +1,4 @@
+import "./Style/_home.scss";
 import { useEffect, useState } from "react";
 import { apiUrl } from "../../utils/api";
 import CarCard from "../CarCard/CardCard";
@@ -46,13 +47,13 @@ const Home = () => {
       <h1 className="text-success text-center mb-4">Benvenuti!</h1>
 
       {/* Campo di ricerca */}
-      <div className="d-flex align-items-center justify-content-center w-100">
+      <div className="d-flex align-items-center justify-content-center w-100 px-4">
         <Form className="mb-4 w-75">
           <Form.Control type="text" placeholder="Cerca un'auto per marca, modello o descrizione..." value={query} onChange={(e) => setQuery(e.target.value)} />
         </Form>
 
         {isLoading && (
-          <div className=" text-center text-light mb-4 w-25">
+          <div className="text-center text-light spin">
             <Spinner animation="border" variant="light" />
           </div>
         )}
