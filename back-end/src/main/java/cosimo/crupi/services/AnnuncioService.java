@@ -33,6 +33,10 @@ public class AnnuncioService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         return this.annuncioRepository.findAll(pageable);
     }
+    public Page<Annuncio> searchAnnunci(String search, int pageNum, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        return annuncioRepository.searchAnnunci(search, pageable);
+    }
     public Annuncio saveAnnuncio(AnnuncioDTO payload, UUID utenteId) {
         Utente venditore = utenteService.findUtenteById(utenteId);
         Auto auto = new Auto(payload.auto().marca(), payload.auto().modello(), payload.auto().anno(), payload.auto().potenza(), payload.auto().cambio(), payload.auto().carburante(), payload.auto().chilometri());

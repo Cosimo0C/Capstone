@@ -130,8 +130,16 @@ public class UtenteController {
     //annunci
     @GetMapping("/annunci")
     public  Page<AnnuncioDTO> getAnnunci(@RequestParam(defaultValue = "0")int pageNumber,
-                                         @RequestParam(defaultValue = "20")int pageSize){
-        return this.annuncioService.findAllAnnunci(pageNumber, pageSize).map(this::mapADTO);
+                                         @RequestParam(defaultValue = "20")int pageSize,
+                                         @RequestParam(required = false) String search){
+        Page<Annuncio> page;
+        if (search != null && !search.isBlank()) {
+            page = annuncioService.searchAnnunci(search, pageNumber, pageSize);
+        } else {
+            page = annuncioService.findAllAnnunci(pageNumber, pageSize);
+        }
+
+        return page.map(this::mapADTO);
     }
 
     @GetMapping("/me/annunci")
