@@ -57,6 +57,9 @@
 .butt {
   display: inline-block;
   transition: transform 0.2s ease !important;
+  &:hover {
+    background-color: lighten($color: $primary, $amount: 20) !important;
+  }
 }
 
 .butt :active {

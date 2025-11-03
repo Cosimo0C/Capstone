@@ -16,6 +16,7 @@ import { apiUrl } from "../../utils/api";
 
 function MyNavbar() {
   const [mostraLogin, setMostraLogin] = useState(false);
+  const [mostraLogoutModal, setMostraLogoutModal] = useState(false);
   const [errore, setErrore] = useState("");
   const [loading, setLoading] = useState(false);
   const [seiLoggato, setSeiLoggato] = useState(false);
@@ -130,7 +131,7 @@ function MyNavbar() {
                   </Link>
                 )}
                 {seiLoggato ? (
-                  <button className="lgn-btn rounded-pill p-2 fw-medium fs-5" onClick={handleLogout}>
+                  <button className="lgn-btn rounded-pill p-2 fw-medium fs-5" onClick={() => setMostraLogoutModal(true)}>
                     Logout
                   </button>
                 ) : (
@@ -169,12 +170,37 @@ function MyNavbar() {
             <Button variant="primary" type="submit" className="w-100 butt" disabled={loading}>
               {loading ? "Caricamento..." : "Accedi"}
             </Button>
-            <Button variant="light" className="w-100 mt-2 text-white butt" onClick={handleChiudi}>
+            <Button variant="primary" className="w-100 mt-2 text-white butt" onClick={handleChiudi}>
               <Link className="text-decoration-none text-white" to={"/Registrazione"}>
                 Registrati
               </Link>
             </Button>
           </Form>
+        </Modal.Body>
+      </Modal>
+
+      {/* Modal Conferma Logout */}
+      <Modal show={mostraLogoutModal} onHide={() => setMostraLogoutModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Conferma Logout</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Sei sicuro di voler effettuare il logout?</p>
+          <div className="d-flex justify-content-end gap-2">
+            <Button
+              variant="light"
+              className="text-white"
+              onClick={() => {
+                handleLogout();
+                setMostraLogoutModal(false);
+              }}
+            >
+              Sì
+            </Button>
+            <Button variant="primary" className="text-white" onClick={() => setMostraLogoutModal(false)}>
+              No
+            </Button>
+          </div>
         </Modal.Body>
       </Modal>
     </>

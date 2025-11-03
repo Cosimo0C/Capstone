@@ -12,7 +12,14 @@
     color: lighten($color: $primary, $amount: 20) !important;
   }
 }
-
+.carousel-indicators {
+  display: flex !important;
+  align-items: end !important;
+  margin: 0 !important;
+}
+.carousel-indicators button {
+  height: 7px !important;
+}
 .h-b :active {
   transform: translateY(20px) scale(0.9);
 }
