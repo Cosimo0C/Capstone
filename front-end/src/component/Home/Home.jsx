@@ -47,16 +47,17 @@ const Home = () => {
       <h1 className="text-success text-center mb-4">Benvenuti!</h1>
 
       {/* Campo di ricerca */}
-      <div className="d-flex align-items-center justify-content-center w-100 px-4">
-        <Form className="mb-4 w-75">
-          <Form.Control type="text" placeholder="Cerca un'auto per marca, modello o descrizione..." value={query} onChange={(e) => setQuery(e.target.value)} />
-        </Form>
+      <div className="search-row">
+        <Form className="mb-4 search-form">
+          <Form.Control type="text" placeholder="Cerca un'auto per marca, modello o anno..." value={query} onChange={(e) => setQuery(e.target.value)} />
 
-        {isLoading && (
-          <div className="text-center text-light spin">
-            <Spinner animation="border" variant="light" />
-          </div>
-        )}
+          {/* spinner inserito dentro il form per non alterare la larghezza dell'input */}
+          {isLoading && (
+            <div className="spin text-center text-light">
+              <Spinner animation="border" variant="light" />
+            </div>
+          )}
+        </Form>
       </div>
       {/* Lista annunci */}
       {annunci.length > 0 ? (

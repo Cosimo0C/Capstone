@@ -1,30 +1,57 @@
 @import "../../../Styles/partials/variables";
 
+/* Flex layout: input + spinner inline and responsive */
+.search-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.search-row .search-form {
+  flex: 0 1 75%;
+  min-width: 280px; /* evita che diventi troppo piccolo */
+  position: relative; /* per posizionare lo spinner all'interno */
+}
+
+.search-row .search-form .form-control {
+  width: 100%;
+  /* riserva spazio a destra per lo spinner per evitare che l'input si riduca */
+  padding-right: 48px;
+}
+
 .spin {
-  right: 13%;
-  top: 33%;
   position: absolute;
+  right: 12px;
+  top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 @media (max-width: 1200px) {
-  .spin {
-    top: 32.2%;
-    right: 12%;
+  .search-row .search-form {
+    flex-basis: 80%;
   }
 }
 
 @media (max-width: 768px) {
-  .spin {
-    top: 31%;
-    right: 12%;
+  .search-row .search-form {
+    flex-basis: 90%;
   }
 }
 
 @media (max-width: 576px) {
+  .search-row .search-form {
+    flex-basis: 100%;
+  }
   .spin {
-    top: 31%;
-    right: 10%;
+    margin-left: 8px;
   }
 }
