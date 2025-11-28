@@ -49,7 +49,7 @@ const Home = () => {
       {/* Campo di ricerca */}
       <div className="search-row">
         <Form className="mb-4 search-form">
-          <Form.Control type="text" placeholder="Cerca un'auto per marca, modello o anno..." value={query} onChange={(e) => setQuery(e.target.value)} />
+          <Form.Control type="text" placeholder="Cerca un'auto per marca, modello, anno..." value={query} onChange={(e) => setQuery(e.target.value)} />
 
           {/* spinner inserito dentro il form per non alterare la larghezza dell'input */}
           {isLoading && (
