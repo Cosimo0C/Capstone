@@ -4,6 +4,7 @@ import cosimo.crupi.entities.Annuncio;
 import cosimo.crupi.entities.Auto;
 import cosimo.crupi.entities.Utente;
 import cosimo.crupi.exceptions.NotFoundException;
+import cosimo.crupi.exceptions.UnAuthorizedException;
 import cosimo.crupi.payloads.AnnuncioDTO;
 import cosimo.crupi.repositories.AnnuncioRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -50,9 +51,11 @@ public class AnnuncioService {
         log.info("L'annuncio è stato salvato correttamente!");
         return this.annuncioRepository.save(annuncio);
     }
-    public Annuncio findAnnuncioByIdAndUpdate(UUID annuncioId, AnnuncioDTO payload){
+    public Annuncio findAnnuncioByIdAndUpdate(UUID annuncioId, AnnuncioDTO payload, UUID utenteId) {
         Annuncio fnd = findAnnuncioById(annuncioId);
-
+        if (!fnd.getUtente().getId().equals(utenteId)) {
+            throw new UnAuthorizedException("Non sei il propietario!");
+        }
         fnd.setTitolo(payload.titolo());
         fnd.setDescrizione(payload.descrizione());
         fnd.setPrezzo(payload.prezzo());
@@ -79,9 +82,13 @@ public class AnnuncioService {
         log.info("L'annuncio è stato aggiornato correttamente!");
         return this.annuncioRepository.save(fnd);
     }
-    public void findAnnuncioByIdAndDelete(UUID annuncioId){
+    public void findAnnuncioByIdAndDelete(UUID annuncioId, UUID  utenteId) {
         Annuncio fnd = findAnnuncioById(annuncioId);
-        this.annuncioRepository.delete(fnd);
+        if (!fnd.getUtente().getId().equals(utenteId)) {
+            throw new UnAuthorizedException("Non sei il propietario!");
+        }else {
+            this.annuncioRepository.delete(fnd);
+        }
     }
     public Page<Annuncio> findAnnunciByUtente(UUID utenteId, int pageNumber, int pageSize){
         return this.annuncioRepository.findByUtenteId(utenteId, PageRequest.of(pageNumber, pageSize));
