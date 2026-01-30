@@ -2,6 +2,7 @@ package cosimo.crupi.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,10 +33,12 @@ public class SecConfig {
                 .cors(Customizer.withDefaults()) // ✅ attiva il CORS (usa WebCorsConfig)
                 .authorizeHttpRequests(auth -> auth
                         // ✅ rotte pubbliche
-                        .requestMatchers("/auth/**", "/utente/annunci", "/error").permitAll()
+                        .requestMatchers("/auth/**", "/error").permitAll()
+                        .requestMatchers(HttpMethod.GET, "annunci").permitAll()
                         // ✅ permetti preflight request CORS
                         .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                         // ✅ tutto il resto richiede autenticazione
+                        .requestMatchers("annunci/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 // ✅ inserisci il filtro JWT PRIMA del filtro di autenticazione standard

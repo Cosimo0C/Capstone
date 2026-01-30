@@ -13,7 +13,7 @@ function DeleteAnnuncio({ annuncioId, onDelete }) {
 
   const deleteAnnuncio = async () => {
     try {
-      const resp = await fetch(apiUrl(`/utente/me/eliminoAnnuncio/${annuncioId}`), {
+      const resp = await fetch(apiUrl(`/annunci/${annuncioId}`), {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

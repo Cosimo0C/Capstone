@@ -12,7 +12,7 @@ const Home = () => {
 
   const getAnnunci = async (searchTerm = "") => {
     try {
-      const endpoint = searchTerm ? apiUrl(`utente/annunci?search=${encodeURIComponent(searchTerm)}`) : apiUrl("/utente/annunci");
+      const endpoint = searchTerm ? apiUrl(`/annunci?search=${encodeURIComponent(searchTerm)}`) : apiUrl("/annunci");
 
       setIsLoading(true);
       const resp = await fetch(endpoint);

@@ -32,9 +32,10 @@ public class JWTfilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         String authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer "))
-            throw new UnAuthorizedException("Inserisci il token nell'Authorization Header nel formato corretto!");
-
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String accessToken =authHeader.replace("Bearer ", "");
         jwtTools.verifyToken(accessToken);
         UUID utenteId = UUID.fromString(jwtTools.extractIdFromToken(accessToken));
@@ -42,10 +43,5 @@ public class JWTfilter extends OncePerRequestFilter {
         Authentication authentication = new UsernamePasswordAuthenticationToken(utenteAttivo, null, utenteAttivo.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
-    }
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request){
-        AntPathMatcher pathMatcher = new AntPathMatcher();
-        return pathMatcher.match("/auth/**", request.getServletPath()) || pathMatcher.match("/utente/annunci", request.getServletPath());
     }
 }

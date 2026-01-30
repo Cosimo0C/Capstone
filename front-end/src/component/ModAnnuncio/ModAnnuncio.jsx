@@ -89,7 +89,7 @@ function ModAnnuncio() {
     };
 
     try {
-      const resp = await fetch(apiUrl(`/utente/me/modAnnuncio/${annuncio.id}`), {
+      const resp = await fetch(apiUrl(`/annunci/${annuncio.id}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

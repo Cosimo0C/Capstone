@@ -46,7 +46,7 @@ function VendiLaTuaAuto() {
     };
 
     try {
-      const resp = await fetch(apiUrl("/utente/me/creoAnnuncio"), {
+      const resp = await fetch(apiUrl("/annunci"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
